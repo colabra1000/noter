@@ -2,91 +2,145 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kt_dart/kt.dart';
 import 'package:noter/application/notes/editor/editor_bloc.dart';
 import 'package:noter/application/notes/note_editor/bloc/note_editor_bloc.dart';
 import 'package:noter/domain/core/value_objects.dart';
-import 'package:noter/domain/notes/note.dart';
 import 'package:noter/domain/notes/value_objects.dart';
 import 'package:noter/presentation/core/globalWidgets/text_styles.dart';
+import 'package:noter/presentation/notes/misc/data_representation.dart';
 import 'package:noter/presentation/notes/widgets/x_icon_button.dart';
-import 'package:noter/presentation/notes/widgets/x_text_editor.dart';
 
-class NoteBody extends StatelessWidget {
-  NoteBody({Key? key}) : super(key: key);
+class NoteBody extends StatefulWidget {
+  final double appBarHeight;
+  const NoteBody({Key? key, required this.appBarHeight}) : super(key: key);
 
-//   @override
-//   State<NoteBody> createState() => _NoteBodyState();
-// }
+  @override
+  State<NoteBody> createState() => _NoteBodyState();
+}
 
-// class _NoteBodyState extends State<NoteBody> {
-  final TextEditingController noteTextController = TextEditingController();
-
-  final String noteBodyContent = "-----123456789kl\n\n"
-      "Lorem ipsumkl dolor sit amet, -----**consectetur adipiscing ;;xkppy;; elit."
-      "Vivamus volutpat sodales libero -----at molestie. Aenean maximus laoreet"
-      " libero, id ultrices enim. Nam ut diam sit amet arcu aliquam vehicula."
-      " Aliquam non rhoncus mauris. Ut in felis blandit, malesuada sem vel,";
+class _NoteBodyState extends State<NoteBody> {
+  KtList<Widget> noteItemList = emptyList();
 
   @override
   Widget build(BuildContext context) {
-    noteTextController.text = noteBodyContent;
+    return BlocBuilder<EditorBloc, EditorState>(
+      buildWhen: (previous, current) =>
+          (previous.editorType == const EditorType.none() &&
+              current.editorType == const EditorType.noteBody()) ||
+          (previous.editorType == const EditorType.noteBody() &&
+              current.editorType == const EditorType.none()) ||
+          previous.editorType == const EditorType.none(),
+      builder: (context, state) {
+        bool isEditing = state.editorType == const EditorType.noteBody();
+        return BlocProvider(
+            create: (context) =>
+                NoteEditorBloc()..add(const NoteEditorEvent.started()),
+            child: BlocConsumer<NoteEditorBloc, NoteEditorState>(
+              listener: (context, state) {
+                noteItemList = state.allNoteItems.map(
+                    (p0) => _constructNoteBody(context: context, noteItem: p0));
+              },
+              listenWhen: (previous, current) {
+                return previous.allNoteItems.size != current.allNoteItems.size;
+                // a new tag is added
+              },
+              // buildWhen: (previous, current) =>
+              //     previous.allNoteItems != current.allNoteItems,
+              builder: (context, state) {
+                // if(isEditing){
+                //   return SizedBox()
+                // }
 
-    bool isEditing = BlocProvider.of<EditorBloc>(context).state.editorType ==
-        const EditorType.noteBody();
+                return GestureDetector(
+                    onLongPress: () {
+                      BlocProvider.of<EditorBloc>(context)
+                          .add(const EditorEvent.toggledNoteBodyEditor());
+                    },
+                    child: Stack(
+                      children: [
+                        _determineSize(
+                            isEditing: isEditing,
+                            children: noteItemList.asList()),
+                        // _noteBodyBuilder(
+                        //     context: context, isEditing: isEditing),
+                        _noteBodyOptionsBuilder(
+                            context: context, isEditing: isEditing),
+                      ],
+                    ));
+              },
+            ));
+      },
+    );
+  }
 
-    return BlocProvider(
-        create: (context) =>
-            NoteEditorBloc()..add(const NoteEditorEvent.started()),
-        child: BlocBuilder<NoteEditorBloc, NoteEditorState>(
-          builder: (context, state) {
-            return GestureDetector(
-                onLongPress: () {
-                  BlocProvider.of<EditorBloc>(context)
-                      .add(const EditorEvent.toggledNoteBodyEditor());
-                },
-                child: Stack(
-                  children: [
-                    _noteBodyBuilder(context: context, isEditing: isEditing),
-                    _noteBodyOptionsBuilder(
-                        context: context, isEditing: isEditing),
-                  ],
-                ));
-          },
-        ));
+  Widget _determineSize(
+      {required bool isEditing, required List<Widget> children}) {
+    // if (!isEditing) {
+    //   return ListView(
+    //     physics: const NeverScrollableScrollPhysics(),
+    //     shrinkWrap: true,
+    //     children: children,
+    //   );
+    // } else {
+    // return Column(
+    //   children: children,
+    // );
+    // }
+
+    if (!isEditing) {
+      return Column(
+        children: children,
+      );
+    } else {
+      return SizedBox(
+        height: 1.sh - widget.appBarHeight,
+        child: SingleChildScrollView(
+          child: Column(children: [
+            SizedBox(
+              height: 20.h,
+            ),
+            ...children,
+            SizedBox(
+              height: 0.h,
+            )
+          ]),
+        ),
+      );
+    }
   }
 
   _noteBodyOptionsBuilder(
       {required BuildContext context, required bool isEditing}) {
     return Visibility(
       visible: isEditing,
-      child: Align(
-        alignment: Alignment.topRight,
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            XIconButton(
-              onPressed: () {
-                // final ra = noteBodyContent.indexOf("kl");
-                // final j1 = noteBodyContent.substring(0, ra);
-                // final j2 = noteBodyContent[ra + 1];
-                final j2 = noteBodyContent.split("-----");
-
-                // print(j1);
-                print(j2);
-              },
-              icon: const Icon(Icons.image),
-            ),
-            XIconButton(
-              onPressed: () {},
-              icon: const Icon(CupertinoIcons.list_bullet),
-            ),
-            XIconButton(
+      child: Container(
+        padding: const EdgeInsets.all(20.0),
+        child: Align(
+          alignment: Alignment.topRight,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              XIconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.image),
+              ),
+              XIconButton(
                 onPressed: () {
-                  BlocProvider.of<EditorBloc>(context)
-                      .add(const EditorEvent.closeAnyEditor());
+                  BlocProvider.of<NoteEditorBloc>(context)
+                      .add(const NoteEditorEvent.newBulletAddedEvent());
                 },
-                icon: const Icon(Icons.cancel)),
-          ],
+                icon: const Icon(CupertinoIcons.list_bullet),
+              ),
+              XIconButton(
+                  onPressed: () {
+                    FocusScope.of(context).unfocus();
+                    BlocProvider.of<EditorBloc>(context)
+                        .add(const EditorEvent.closeAnyEditor());
+                  },
+                  icon: const Icon(Icons.cancel)),
+            ],
+          ),
         ),
       ),
     );
@@ -94,20 +148,21 @@ class NoteBody extends StatelessWidget {
 
   Widget _noteBodyBuilder(
       {required BuildContext context, required bool isEditing}) {
-    final state = BlocProvider.of<NoteEditorBloc>(context).state;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 30),
-        ListView.builder(
-          shrinkWrap: true,
-          itemBuilder: (context, i) {
-            return _constructNoteBody(
-                context: context, noteItem: state.noteItem[i]);
-          },
-          itemCount: state.noteItem.size,
+        Column(
+          children: noteItemList.asList(),
         ),
+        // ListView(
+        //   shrinkWrap: true,
+        //   children: noteItemList.asList(),
+        //   // itemBuilder: (context, i) {
+        //   //   return noteItemList
+        //   // },
+        //   // itemCount: state.noteItem.size,
+        // ),
         // NoteTextEditor(
         //     textEditingController: noteTextController, isEditing: isEditing),
         SizedBox(height: 30.h),
@@ -130,25 +185,34 @@ class NoteBody extends StatelessWidget {
 
   Widget _constructNoteBody(
       {required BuildContext context, required NoteItem noteItem}) {
-    final bool isEditing =
-        BlocProvider.of<EditorBloc>(context).state.editorType ==
-            const EditorType.noteBody();
-
     if (noteItem is NoteString) {
       return noteItem.value.fold(
         (l) => Text("error", style: mediumText.copyWith(color: dangerColor)),
         (r) {
           FocusNode focusNode = FocusNode();
-          focusNode.addListener(() {
-            if (focusNode.hasFocus) {
-              // print(noteItem.uniqueId.value);
-            }
-          });
-          return NoteTextEditor(
-            focusNode: focusNode,
-            text: r,
-            isEditing: isEditing,
-            noteItemId: noteItem.uniqueId,
+          TextEditingController textEditingController =
+              TextEditingController(text: r);
+          focusNode.addListener(() => focusChanged(
+              context: context,
+              textEditingController: textEditingController,
+              noteItemId: noteItem.uniqueId,
+              focusNode: focusNode));
+          return BlocBuilder<EditorBloc, EditorState>(
+            key: UniqueKey(),
+            buildWhen: (previous, current) =>
+                (previous.editorType == const EditorType.none() &&
+                    current.editorType == const EditorType.noteBody()) ||
+                (previous.editorType == const EditorType.noteBody() &&
+                    current.editorType == const EditorType.none()) ||
+                previous.editorType == const EditorType.none(),
+            builder: (context, state) {
+              return NoteTextEditor(
+                uniqueId: noteItem.uniqueId,
+                focusNode: focusNode,
+                textEditingController: textEditingController,
+                isEditing: state.editorType == const EditorType.noteBody(),
+              );
+            },
           );
         },
       );
@@ -159,24 +223,34 @@ class NoteBody extends StatelessWidget {
         (f) => const Text("error"),
         (r) {
           FocusNode focusNode = FocusNode();
-          focusNode.addListener(() {
-            if (focusNode.hasFocus) {
-              // print(noteItem.uniqueId.value);
-            }
-          });
-          return Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              const Icon(Icons.arrow_right),
-              Flexible(
-                child: NoteTextEditor(
-                  focusNode: focusNode,
-                  isEditing: isEditing,
-                  text: r,
-                  noteItemId: noteItem.uniqueId,
-                ),
-              ),
-            ],
+          TextEditingController textEditingController =
+              TextEditingController(text: r);
+
+          focusNode.addListener(() => focusChanged(
+              context: context,
+              textEditingController: textEditingController,
+              noteItemId: noteItem.uniqueId,
+              focusNode: focusNode));
+          //put a listener here which can have access to both the text focus
+          return BlocBuilder<EditorBloc, EditorState>(
+            key: UniqueKey(),
+            builder: (context, state) {
+              return Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.arrow_right_rounded),
+                  Expanded(
+                    child: NoteTextEditor(
+                      uniqueId: noteItem.uniqueId,
+                      focusNode: focusNode,
+                      textEditingController: textEditingController,
+                      isEditing:
+                          state.editorType == const EditorType.noteBody(),
+                    ),
+                  ),
+                ],
+              );
+            },
           );
         },
       );
@@ -187,43 +261,50 @@ class NoteBody extends StatelessWidget {
 
   focusChanged(
       {required BuildContext context,
-      required TextEditingController textController,
+      required TextEditingController textEditingController,
       required UniqueId noteItemId,
       required FocusNode focusNode}) {
-    BlocProvider.of<NoteEditorBloc>(context).add(
-        NoteEditorEvent.focusChangedEvent(
-            textController: textController,
-            noteItemId: noteItemId,
-            focusNode: focusNode));
+    if (focusNode.hasFocus) {
+      BlocProvider.of<NoteEditorBloc>(context).add(
+        NoteEditorEvent.currentStateSavedEvent(
+          payload: NoteItemPayload.noteBody(
+            uniqueId: noteItemId,
+            payload: textEditingController.text,
+            cursorPosition: textEditingController.selection.base.offset,
+          ),
+        ),
+      );
+    }
   }
 }
 
 class NoteTextEditor extends StatelessWidget {
   final bool isEditing;
-  final String text;
+  final UniqueId uniqueId;
   final FocusNode focusNode;
-  final UniqueId noteItemId;
   final TextEditingController textEditingController;
-  NoteTextEditor(
+  const NoteTextEditor(
       {Key? key,
-      required this.text,
+      required this.uniqueId,
       required this.focusNode,
-      required this.noteItemId,
-      required this.isEditing})
-      : textEditingController = TextEditingController(text: text),
-        super(key: key);
+      required this.isEditing,
+      required this.textEditingController})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       focusNode: focusNode,
       onChanged: (String value) {
-        // int cursorPosition = textEditingController.selection.base.offset;
-        // print(cursorPosition);
-        // int cursorPosition =TextSelection.fromPosition(TextPosition(offset: controller.text.length));
         BlocProvider.of<NoteEditorBloc>(context).add(
-            NoteEditorEvent.noteFieldChanged(
-                cursorPosition: 0, noteItemId: noteItemId, noteBody: value));
+          NoteEditorEvent.currentStateSavedEvent(
+            payload: NoteItemPayload.noteBody(
+              uniqueId: uniqueId,
+              payload: textEditingController.text,
+              cursorPosition: textEditingController.selection.base.offset,
+            ),
+          ),
+        );
       },
       minLines: 1,
       maxLines: 20,

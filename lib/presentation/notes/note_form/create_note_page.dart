@@ -22,6 +22,8 @@ class _CreateNotePageState extends State<CreateNotePage> {
   final double noteTagsHeight = 80.h;
   final double expandedTagsPanelHeight = 260.h;
   final double expandedTitlePanelHeight = 260.h;
+  final double appBarHeight = 70.h;
+
   final ScrollController scrollController = ScrollController();
 
   @override
@@ -46,13 +48,16 @@ class _CreateNotePageState extends State<CreateNotePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 70.h,
+                      height: appBarHeight,
                       child: TopBuilder(
                         editing: state.editorType != const EditorType.none(),
                       ),
                     ),
                     Expanded(
                       child: SingleChildScrollView(
+                        physics: state.editorType == const EditorType.noteBody()
+                            ? const NeverScrollableScrollPhysics()
+                            : const BouncingScrollPhysics(),
                         child: Column(
                           children: [
                             const NoteTitle(),
@@ -69,7 +74,7 @@ class _CreateNotePageState extends State<CreateNotePage> {
                                 child: NoteTags(),
                               ),
                             ),
-                            NoteBody(),
+                            NoteBody(appBarHeight: appBarHeight),
                           ],
                         ),
                       ),

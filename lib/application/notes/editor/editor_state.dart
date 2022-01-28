@@ -2,7 +2,9 @@ part of 'editor_bloc.dart';
 
 @freezed
 class EditorState with _$EditorState {
-  const factory EditorState({required EditorType editorType}) = _EditorState;
+  const factory EditorState({
+    required EditorType editorType,
+  }) = _EditorState;
 
   factory EditorState.initial() =>
       const EditorState(editorType: EditorType.none());
