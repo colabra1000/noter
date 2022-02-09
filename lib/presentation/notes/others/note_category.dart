@@ -28,7 +28,7 @@ class NoteCategory extends StatelessWidget {
     return Container(
       width: .4.sw,
       decoration: BoxDecoration(
-          color: textColorLight, borderRadius: BorderRadius.circular(10.r)),
+          color: lightTextColor, borderRadius: BorderRadius.circular(10.r)),
       child: AspectRatio(
         aspectRatio: 1,
         child: Center(

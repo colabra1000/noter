@@ -30,7 +30,7 @@ class _$EditorEventTearOff {
     return const _ToggledNoteTitleEditor();
   }
 
-  _ToggledNoteTagEditor toggledNoteTagEditor() {
+  _ToggledNoteTagEditor toggledNoteCategoryEditor() {
     return const _ToggledNoteTagEditor();
   }
 
@@ -49,7 +49,7 @@ mixin _$EditorEvent {
     required TResult Function() started,
     required TResult Function() toggledNoteBodyEditor,
     required TResult Function() toggledNoteTitleEditor,
-    required TResult Function() toggledNoteTagEditor,
+    required TResult Function() toggledNoteCategoryEditor,
     required TResult Function() closeAnyEditor,
   }) =>
       throw _privateConstructorUsedError;
@@ -58,7 +58,7 @@ mixin _$EditorEvent {
     TResult Function()? started,
     TResult Function()? toggledNoteBodyEditor,
     TResult Function()? toggledNoteTitleEditor,
-    TResult Function()? toggledNoteTagEditor,
+    TResult Function()? toggledNoteCategoryEditor,
     TResult Function()? closeAnyEditor,
   }) =>
       throw _privateConstructorUsedError;
@@ -67,7 +67,7 @@ mixin _$EditorEvent {
     TResult Function()? started,
     TResult Function()? toggledNoteBodyEditor,
     TResult Function()? toggledNoteTitleEditor,
-    TResult Function()? toggledNoteTagEditor,
+    TResult Function()? toggledNoteCategoryEditor,
     TResult Function()? closeAnyEditor,
     required TResult orElse(),
   }) =>
@@ -79,7 +79,8 @@ mixin _$EditorEvent {
         toggledNoteBodyEditor,
     required TResult Function(_ToggledNoteTitleEditor value)
         toggledNoteTitleEditor,
-    required TResult Function(_ToggledNoteTagEditor value) toggledNoteTagEditor,
+    required TResult Function(_ToggledNoteTagEditor value)
+        toggledNoteCategoryEditor,
     required TResult Function(_CloseAnyEditor value) closeAnyEditor,
   }) =>
       throw _privateConstructorUsedError;
@@ -88,7 +89,7 @@ mixin _$EditorEvent {
     TResult Function(_Started value)? started,
     TResult Function(_ToggledNoteBodyEditor value)? toggledNoteBodyEditor,
     TResult Function(_ToggledNoteTitleEditor value)? toggledNoteTitleEditor,
-    TResult Function(_ToggledNoteTagEditor value)? toggledNoteTagEditor,
+    TResult Function(_ToggledNoteTagEditor value)? toggledNoteCategoryEditor,
     TResult Function(_CloseAnyEditor value)? closeAnyEditor,
   }) =>
       throw _privateConstructorUsedError;
@@ -97,7 +98,7 @@ mixin _$EditorEvent {
     TResult Function(_Started value)? started,
     TResult Function(_ToggledNoteBodyEditor value)? toggledNoteBodyEditor,
     TResult Function(_ToggledNoteTitleEditor value)? toggledNoteTitleEditor,
-    TResult Function(_ToggledNoteTagEditor value)? toggledNoteTagEditor,
+    TResult Function(_ToggledNoteTagEditor value)? toggledNoteCategoryEditor,
     TResult Function(_CloseAnyEditor value)? closeAnyEditor,
     required TResult orElse(),
   }) =>
@@ -161,7 +162,7 @@ class _$_Started implements _Started {
     required TResult Function() started,
     required TResult Function() toggledNoteBodyEditor,
     required TResult Function() toggledNoteTitleEditor,
-    required TResult Function() toggledNoteTagEditor,
+    required TResult Function() toggledNoteCategoryEditor,
     required TResult Function() closeAnyEditor,
   }) {
     return started();
@@ -173,7 +174,7 @@ class _$_Started implements _Started {
     TResult Function()? started,
     TResult Function()? toggledNoteBodyEditor,
     TResult Function()? toggledNoteTitleEditor,
-    TResult Function()? toggledNoteTagEditor,
+    TResult Function()? toggledNoteCategoryEditor,
     TResult Function()? closeAnyEditor,
   }) {
     return started?.call();
@@ -185,7 +186,7 @@ class _$_Started implements _Started {
     TResult Function()? started,
     TResult Function()? toggledNoteBodyEditor,
     TResult Function()? toggledNoteTitleEditor,
-    TResult Function()? toggledNoteTagEditor,
+    TResult Function()? toggledNoteCategoryEditor,
     TResult Function()? closeAnyEditor,
     required TResult orElse(),
   }) {
@@ -203,7 +204,8 @@ class _$_Started implements _Started {
         toggledNoteBodyEditor,
     required TResult Function(_ToggledNoteTitleEditor value)
         toggledNoteTitleEditor,
-    required TResult Function(_ToggledNoteTagEditor value) toggledNoteTagEditor,
+    required TResult Function(_ToggledNoteTagEditor value)
+        toggledNoteCategoryEditor,
     required TResult Function(_CloseAnyEditor value) closeAnyEditor,
   }) {
     return started(this);
@@ -215,7 +217,7 @@ class _$_Started implements _Started {
     TResult Function(_Started value)? started,
     TResult Function(_ToggledNoteBodyEditor value)? toggledNoteBodyEditor,
     TResult Function(_ToggledNoteTitleEditor value)? toggledNoteTitleEditor,
-    TResult Function(_ToggledNoteTagEditor value)? toggledNoteTagEditor,
+    TResult Function(_ToggledNoteTagEditor value)? toggledNoteCategoryEditor,
     TResult Function(_CloseAnyEditor value)? closeAnyEditor,
   }) {
     return started?.call(this);
@@ -227,7 +229,7 @@ class _$_Started implements _Started {
     TResult Function(_Started value)? started,
     TResult Function(_ToggledNoteBodyEditor value)? toggledNoteBodyEditor,
     TResult Function(_ToggledNoteTitleEditor value)? toggledNoteTitleEditor,
-    TResult Function(_ToggledNoteTagEditor value)? toggledNoteTagEditor,
+    TResult Function(_ToggledNoteTagEditor value)? toggledNoteCategoryEditor,
     TResult Function(_CloseAnyEditor value)? closeAnyEditor,
     required TResult orElse(),
   }) {
@@ -286,7 +288,7 @@ class _$_ToggledNoteBodyEditor implements _ToggledNoteBodyEditor {
     required TResult Function() started,
     required TResult Function() toggledNoteBodyEditor,
     required TResult Function() toggledNoteTitleEditor,
-    required TResult Function() toggledNoteTagEditor,
+    required TResult Function() toggledNoteCategoryEditor,
     required TResult Function() closeAnyEditor,
   }) {
     return toggledNoteBodyEditor();
@@ -298,7 +300,7 @@ class _$_ToggledNoteBodyEditor implements _ToggledNoteBodyEditor {
     TResult Function()? started,
     TResult Function()? toggledNoteBodyEditor,
     TResult Function()? toggledNoteTitleEditor,
-    TResult Function()? toggledNoteTagEditor,
+    TResult Function()? toggledNoteCategoryEditor,
     TResult Function()? closeAnyEditor,
   }) {
     return toggledNoteBodyEditor?.call();
@@ -310,7 +312,7 @@ class _$_ToggledNoteBodyEditor implements _ToggledNoteBodyEditor {
     TResult Function()? started,
     TResult Function()? toggledNoteBodyEditor,
     TResult Function()? toggledNoteTitleEditor,
-    TResult Function()? toggledNoteTagEditor,
+    TResult Function()? toggledNoteCategoryEditor,
     TResult Function()? closeAnyEditor,
     required TResult orElse(),
   }) {
@@ -328,7 +330,8 @@ class _$_ToggledNoteBodyEditor implements _ToggledNoteBodyEditor {
         toggledNoteBodyEditor,
     required TResult Function(_ToggledNoteTitleEditor value)
         toggledNoteTitleEditor,
-    required TResult Function(_ToggledNoteTagEditor value) toggledNoteTagEditor,
+    required TResult Function(_ToggledNoteTagEditor value)
+        toggledNoteCategoryEditor,
     required TResult Function(_CloseAnyEditor value) closeAnyEditor,
   }) {
     return toggledNoteBodyEditor(this);
@@ -340,7 +343,7 @@ class _$_ToggledNoteBodyEditor implements _ToggledNoteBodyEditor {
     TResult Function(_Started value)? started,
     TResult Function(_ToggledNoteBodyEditor value)? toggledNoteBodyEditor,
     TResult Function(_ToggledNoteTitleEditor value)? toggledNoteTitleEditor,
-    TResult Function(_ToggledNoteTagEditor value)? toggledNoteTagEditor,
+    TResult Function(_ToggledNoteTagEditor value)? toggledNoteCategoryEditor,
     TResult Function(_CloseAnyEditor value)? closeAnyEditor,
   }) {
     return toggledNoteBodyEditor?.call(this);
@@ -352,7 +355,7 @@ class _$_ToggledNoteBodyEditor implements _ToggledNoteBodyEditor {
     TResult Function(_Started value)? started,
     TResult Function(_ToggledNoteBodyEditor value)? toggledNoteBodyEditor,
     TResult Function(_ToggledNoteTitleEditor value)? toggledNoteTitleEditor,
-    TResult Function(_ToggledNoteTagEditor value)? toggledNoteTagEditor,
+    TResult Function(_ToggledNoteTagEditor value)? toggledNoteCategoryEditor,
     TResult Function(_CloseAnyEditor value)? closeAnyEditor,
     required TResult orElse(),
   }) {
@@ -411,7 +414,7 @@ class _$_ToggledNoteTitleEditor implements _ToggledNoteTitleEditor {
     required TResult Function() started,
     required TResult Function() toggledNoteBodyEditor,
     required TResult Function() toggledNoteTitleEditor,
-    required TResult Function() toggledNoteTagEditor,
+    required TResult Function() toggledNoteCategoryEditor,
     required TResult Function() closeAnyEditor,
   }) {
     return toggledNoteTitleEditor();
@@ -423,7 +426,7 @@ class _$_ToggledNoteTitleEditor implements _ToggledNoteTitleEditor {
     TResult Function()? started,
     TResult Function()? toggledNoteBodyEditor,
     TResult Function()? toggledNoteTitleEditor,
-    TResult Function()? toggledNoteTagEditor,
+    TResult Function()? toggledNoteCategoryEditor,
     TResult Function()? closeAnyEditor,
   }) {
     return toggledNoteTitleEditor?.call();
@@ -435,7 +438,7 @@ class _$_ToggledNoteTitleEditor implements _ToggledNoteTitleEditor {
     TResult Function()? started,
     TResult Function()? toggledNoteBodyEditor,
     TResult Function()? toggledNoteTitleEditor,
-    TResult Function()? toggledNoteTagEditor,
+    TResult Function()? toggledNoteCategoryEditor,
     TResult Function()? closeAnyEditor,
     required TResult orElse(),
   }) {
@@ -453,7 +456,8 @@ class _$_ToggledNoteTitleEditor implements _ToggledNoteTitleEditor {
         toggledNoteBodyEditor,
     required TResult Function(_ToggledNoteTitleEditor value)
         toggledNoteTitleEditor,
-    required TResult Function(_ToggledNoteTagEditor value) toggledNoteTagEditor,
+    required TResult Function(_ToggledNoteTagEditor value)
+        toggledNoteCategoryEditor,
     required TResult Function(_CloseAnyEditor value) closeAnyEditor,
   }) {
     return toggledNoteTitleEditor(this);
@@ -465,7 +469,7 @@ class _$_ToggledNoteTitleEditor implements _ToggledNoteTitleEditor {
     TResult Function(_Started value)? started,
     TResult Function(_ToggledNoteBodyEditor value)? toggledNoteBodyEditor,
     TResult Function(_ToggledNoteTitleEditor value)? toggledNoteTitleEditor,
-    TResult Function(_ToggledNoteTagEditor value)? toggledNoteTagEditor,
+    TResult Function(_ToggledNoteTagEditor value)? toggledNoteCategoryEditor,
     TResult Function(_CloseAnyEditor value)? closeAnyEditor,
   }) {
     return toggledNoteTitleEditor?.call(this);
@@ -477,7 +481,7 @@ class _$_ToggledNoteTitleEditor implements _ToggledNoteTitleEditor {
     TResult Function(_Started value)? started,
     TResult Function(_ToggledNoteBodyEditor value)? toggledNoteBodyEditor,
     TResult Function(_ToggledNoteTitleEditor value)? toggledNoteTitleEditor,
-    TResult Function(_ToggledNoteTagEditor value)? toggledNoteTagEditor,
+    TResult Function(_ToggledNoteTagEditor value)? toggledNoteCategoryEditor,
     TResult Function(_CloseAnyEditor value)? closeAnyEditor,
     required TResult orElse(),
   }) {
@@ -518,7 +522,7 @@ class _$_ToggledNoteTagEditor implements _ToggledNoteTagEditor {
 
   @override
   String toString() {
-    return 'EditorEvent.toggledNoteTagEditor()';
+    return 'EditorEvent.toggledNoteCategoryEditor()';
   }
 
   @override
@@ -536,10 +540,10 @@ class _$_ToggledNoteTagEditor implements _ToggledNoteTagEditor {
     required TResult Function() started,
     required TResult Function() toggledNoteBodyEditor,
     required TResult Function() toggledNoteTitleEditor,
-    required TResult Function() toggledNoteTagEditor,
+    required TResult Function() toggledNoteCategoryEditor,
     required TResult Function() closeAnyEditor,
   }) {
-    return toggledNoteTagEditor();
+    return toggledNoteCategoryEditor();
   }
 
   @override
@@ -548,10 +552,10 @@ class _$_ToggledNoteTagEditor implements _ToggledNoteTagEditor {
     TResult Function()? started,
     TResult Function()? toggledNoteBodyEditor,
     TResult Function()? toggledNoteTitleEditor,
-    TResult Function()? toggledNoteTagEditor,
+    TResult Function()? toggledNoteCategoryEditor,
     TResult Function()? closeAnyEditor,
   }) {
-    return toggledNoteTagEditor?.call();
+    return toggledNoteCategoryEditor?.call();
   }
 
   @override
@@ -560,12 +564,12 @@ class _$_ToggledNoteTagEditor implements _ToggledNoteTagEditor {
     TResult Function()? started,
     TResult Function()? toggledNoteBodyEditor,
     TResult Function()? toggledNoteTitleEditor,
-    TResult Function()? toggledNoteTagEditor,
+    TResult Function()? toggledNoteCategoryEditor,
     TResult Function()? closeAnyEditor,
     required TResult orElse(),
   }) {
-    if (toggledNoteTagEditor != null) {
-      return toggledNoteTagEditor();
+    if (toggledNoteCategoryEditor != null) {
+      return toggledNoteCategoryEditor();
     }
     return orElse();
   }
@@ -578,10 +582,11 @@ class _$_ToggledNoteTagEditor implements _ToggledNoteTagEditor {
         toggledNoteBodyEditor,
     required TResult Function(_ToggledNoteTitleEditor value)
         toggledNoteTitleEditor,
-    required TResult Function(_ToggledNoteTagEditor value) toggledNoteTagEditor,
+    required TResult Function(_ToggledNoteTagEditor value)
+        toggledNoteCategoryEditor,
     required TResult Function(_CloseAnyEditor value) closeAnyEditor,
   }) {
-    return toggledNoteTagEditor(this);
+    return toggledNoteCategoryEditor(this);
   }
 
   @override
@@ -590,10 +595,10 @@ class _$_ToggledNoteTagEditor implements _ToggledNoteTagEditor {
     TResult Function(_Started value)? started,
     TResult Function(_ToggledNoteBodyEditor value)? toggledNoteBodyEditor,
     TResult Function(_ToggledNoteTitleEditor value)? toggledNoteTitleEditor,
-    TResult Function(_ToggledNoteTagEditor value)? toggledNoteTagEditor,
+    TResult Function(_ToggledNoteTagEditor value)? toggledNoteCategoryEditor,
     TResult Function(_CloseAnyEditor value)? closeAnyEditor,
   }) {
-    return toggledNoteTagEditor?.call(this);
+    return toggledNoteCategoryEditor?.call(this);
   }
 
   @override
@@ -602,12 +607,12 @@ class _$_ToggledNoteTagEditor implements _ToggledNoteTagEditor {
     TResult Function(_Started value)? started,
     TResult Function(_ToggledNoteBodyEditor value)? toggledNoteBodyEditor,
     TResult Function(_ToggledNoteTitleEditor value)? toggledNoteTitleEditor,
-    TResult Function(_ToggledNoteTagEditor value)? toggledNoteTagEditor,
+    TResult Function(_ToggledNoteTagEditor value)? toggledNoteCategoryEditor,
     TResult Function(_CloseAnyEditor value)? closeAnyEditor,
     required TResult orElse(),
   }) {
-    if (toggledNoteTagEditor != null) {
-      return toggledNoteTagEditor(this);
+    if (toggledNoteCategoryEditor != null) {
+      return toggledNoteCategoryEditor(this);
     }
     return orElse();
   }
@@ -661,7 +666,7 @@ class _$_CloseAnyEditor implements _CloseAnyEditor {
     required TResult Function() started,
     required TResult Function() toggledNoteBodyEditor,
     required TResult Function() toggledNoteTitleEditor,
-    required TResult Function() toggledNoteTagEditor,
+    required TResult Function() toggledNoteCategoryEditor,
     required TResult Function() closeAnyEditor,
   }) {
     return closeAnyEditor();
@@ -673,7 +678,7 @@ class _$_CloseAnyEditor implements _CloseAnyEditor {
     TResult Function()? started,
     TResult Function()? toggledNoteBodyEditor,
     TResult Function()? toggledNoteTitleEditor,
-    TResult Function()? toggledNoteTagEditor,
+    TResult Function()? toggledNoteCategoryEditor,
     TResult Function()? closeAnyEditor,
   }) {
     return closeAnyEditor?.call();
@@ -685,7 +690,7 @@ class _$_CloseAnyEditor implements _CloseAnyEditor {
     TResult Function()? started,
     TResult Function()? toggledNoteBodyEditor,
     TResult Function()? toggledNoteTitleEditor,
-    TResult Function()? toggledNoteTagEditor,
+    TResult Function()? toggledNoteCategoryEditor,
     TResult Function()? closeAnyEditor,
     required TResult orElse(),
   }) {
@@ -703,7 +708,8 @@ class _$_CloseAnyEditor implements _CloseAnyEditor {
         toggledNoteBodyEditor,
     required TResult Function(_ToggledNoteTitleEditor value)
         toggledNoteTitleEditor,
-    required TResult Function(_ToggledNoteTagEditor value) toggledNoteTagEditor,
+    required TResult Function(_ToggledNoteTagEditor value)
+        toggledNoteCategoryEditor,
     required TResult Function(_CloseAnyEditor value) closeAnyEditor,
   }) {
     return closeAnyEditor(this);
@@ -715,7 +721,7 @@ class _$_CloseAnyEditor implements _CloseAnyEditor {
     TResult Function(_Started value)? started,
     TResult Function(_ToggledNoteBodyEditor value)? toggledNoteBodyEditor,
     TResult Function(_ToggledNoteTitleEditor value)? toggledNoteTitleEditor,
-    TResult Function(_ToggledNoteTagEditor value)? toggledNoteTagEditor,
+    TResult Function(_ToggledNoteTagEditor value)? toggledNoteCategoryEditor,
     TResult Function(_CloseAnyEditor value)? closeAnyEditor,
   }) {
     return closeAnyEditor?.call(this);
@@ -727,7 +733,7 @@ class _$_CloseAnyEditor implements _CloseAnyEditor {
     TResult Function(_Started value)? started,
     TResult Function(_ToggledNoteBodyEditor value)? toggledNoteBodyEditor,
     TResult Function(_ToggledNoteTitleEditor value)? toggledNoteTitleEditor,
-    TResult Function(_ToggledNoteTagEditor value)? toggledNoteTagEditor,
+    TResult Function(_ToggledNoteTagEditor value)? toggledNoteCategoryEditor,
     TResult Function(_CloseAnyEditor value)? closeAnyEditor,
     required TResult orElse(),
   }) {
@@ -894,8 +900,8 @@ class _$EditorTypeTearOff {
     return const _NoteBody();
   }
 
-  _NoteTags noteTags() {
-    return const _NoteTags();
+  _NoteCategory noteCategory() {
+    return const _NoteCategory();
   }
 
   _None none() {
@@ -912,7 +918,7 @@ mixin _$EditorType {
   TResult when<TResult extends Object?>({
     required TResult Function() noteTitle,
     required TResult Function() noteBody,
-    required TResult Function() noteTags,
+    required TResult Function() noteCategory,
     required TResult Function() none,
   }) =>
       throw _privateConstructorUsedError;
@@ -920,7 +926,7 @@ mixin _$EditorType {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? noteTitle,
     TResult Function()? noteBody,
-    TResult Function()? noteTags,
+    TResult Function()? noteCategory,
     TResult Function()? none,
   }) =>
       throw _privateConstructorUsedError;
@@ -928,7 +934,7 @@ mixin _$EditorType {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noteTitle,
     TResult Function()? noteBody,
-    TResult Function()? noteTags,
+    TResult Function()? noteCategory,
     TResult Function()? none,
     required TResult orElse(),
   }) =>
@@ -937,7 +943,7 @@ mixin _$EditorType {
   TResult map<TResult extends Object?>({
     required TResult Function(_NoteTitle value) noteTitle,
     required TResult Function(_NoteBody value) noteBody,
-    required TResult Function(_NoteTags value) noteTags,
+    required TResult Function(_NoteCategory value) noteCategory,
     required TResult Function(_None value) none,
   }) =>
       throw _privateConstructorUsedError;
@@ -945,7 +951,7 @@ mixin _$EditorType {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NoteTitle value)? noteTitle,
     TResult Function(_NoteBody value)? noteBody,
-    TResult Function(_NoteTags value)? noteTags,
+    TResult Function(_NoteCategory value)? noteCategory,
     TResult Function(_None value)? none,
   }) =>
       throw _privateConstructorUsedError;
@@ -953,7 +959,7 @@ mixin _$EditorType {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NoteTitle value)? noteTitle,
     TResult Function(_NoteBody value)? noteBody,
-    TResult Function(_NoteTags value)? noteTags,
+    TResult Function(_NoteCategory value)? noteCategory,
     TResult Function(_None value)? none,
     required TResult orElse(),
   }) =>
@@ -1017,7 +1023,7 @@ class _$_NoteTitle implements _NoteTitle {
   TResult when<TResult extends Object?>({
     required TResult Function() noteTitle,
     required TResult Function() noteBody,
-    required TResult Function() noteTags,
+    required TResult Function() noteCategory,
     required TResult Function() none,
   }) {
     return noteTitle();
@@ -1028,7 +1034,7 @@ class _$_NoteTitle implements _NoteTitle {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? noteTitle,
     TResult Function()? noteBody,
-    TResult Function()? noteTags,
+    TResult Function()? noteCategory,
     TResult Function()? none,
   }) {
     return noteTitle?.call();
@@ -1039,7 +1045,7 @@ class _$_NoteTitle implements _NoteTitle {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noteTitle,
     TResult Function()? noteBody,
-    TResult Function()? noteTags,
+    TResult Function()? noteCategory,
     TResult Function()? none,
     required TResult orElse(),
   }) {
@@ -1054,7 +1060,7 @@ class _$_NoteTitle implements _NoteTitle {
   TResult map<TResult extends Object?>({
     required TResult Function(_NoteTitle value) noteTitle,
     required TResult Function(_NoteBody value) noteBody,
-    required TResult Function(_NoteTags value) noteTags,
+    required TResult Function(_NoteCategory value) noteCategory,
     required TResult Function(_None value) none,
   }) {
     return noteTitle(this);
@@ -1065,7 +1071,7 @@ class _$_NoteTitle implements _NoteTitle {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NoteTitle value)? noteTitle,
     TResult Function(_NoteBody value)? noteBody,
-    TResult Function(_NoteTags value)? noteTags,
+    TResult Function(_NoteCategory value)? noteCategory,
     TResult Function(_None value)? none,
   }) {
     return noteTitle?.call(this);
@@ -1076,7 +1082,7 @@ class _$_NoteTitle implements _NoteTitle {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NoteTitle value)? noteTitle,
     TResult Function(_NoteBody value)? noteBody,
-    TResult Function(_NoteTags value)? noteTags,
+    TResult Function(_NoteCategory value)? noteCategory,
     TResult Function(_None value)? none,
     required TResult orElse(),
   }) {
@@ -1131,7 +1137,7 @@ class _$_NoteBody implements _NoteBody {
   TResult when<TResult extends Object?>({
     required TResult Function() noteTitle,
     required TResult Function() noteBody,
-    required TResult Function() noteTags,
+    required TResult Function() noteCategory,
     required TResult Function() none,
   }) {
     return noteBody();
@@ -1142,7 +1148,7 @@ class _$_NoteBody implements _NoteBody {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? noteTitle,
     TResult Function()? noteBody,
-    TResult Function()? noteTags,
+    TResult Function()? noteCategory,
     TResult Function()? none,
   }) {
     return noteBody?.call();
@@ -1153,7 +1159,7 @@ class _$_NoteBody implements _NoteBody {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noteTitle,
     TResult Function()? noteBody,
-    TResult Function()? noteTags,
+    TResult Function()? noteCategory,
     TResult Function()? none,
     required TResult orElse(),
   }) {
@@ -1168,7 +1174,7 @@ class _$_NoteBody implements _NoteBody {
   TResult map<TResult extends Object?>({
     required TResult Function(_NoteTitle value) noteTitle,
     required TResult Function(_NoteBody value) noteBody,
-    required TResult Function(_NoteTags value) noteTags,
+    required TResult Function(_NoteCategory value) noteCategory,
     required TResult Function(_None value) none,
   }) {
     return noteBody(this);
@@ -1179,7 +1185,7 @@ class _$_NoteBody implements _NoteBody {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NoteTitle value)? noteTitle,
     TResult Function(_NoteBody value)? noteBody,
-    TResult Function(_NoteTags value)? noteTags,
+    TResult Function(_NoteCategory value)? noteCategory,
     TResult Function(_None value)? none,
   }) {
     return noteBody?.call(this);
@@ -1190,7 +1196,7 @@ class _$_NoteBody implements _NoteBody {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NoteTitle value)? noteTitle,
     TResult Function(_NoteBody value)? noteBody,
-    TResult Function(_NoteTags value)? noteTags,
+    TResult Function(_NoteCategory value)? noteCategory,
     TResult Function(_None value)? none,
     required TResult orElse(),
   }) {
@@ -1206,35 +1212,37 @@ abstract class _NoteBody implements EditorType {
 }
 
 /// @nodoc
-abstract class _$NoteTagsCopyWith<$Res> {
-  factory _$NoteTagsCopyWith(_NoteTags value, $Res Function(_NoteTags) then) =
-      __$NoteTagsCopyWithImpl<$Res>;
+abstract class _$NoteCategoryCopyWith<$Res> {
+  factory _$NoteCategoryCopyWith(
+          _NoteCategory value, $Res Function(_NoteCategory) then) =
+      __$NoteCategoryCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$NoteTagsCopyWithImpl<$Res> extends _$EditorTypeCopyWithImpl<$Res>
-    implements _$NoteTagsCopyWith<$Res> {
-  __$NoteTagsCopyWithImpl(_NoteTags _value, $Res Function(_NoteTags) _then)
-      : super(_value, (v) => _then(v as _NoteTags));
+class __$NoteCategoryCopyWithImpl<$Res> extends _$EditorTypeCopyWithImpl<$Res>
+    implements _$NoteCategoryCopyWith<$Res> {
+  __$NoteCategoryCopyWithImpl(
+      _NoteCategory _value, $Res Function(_NoteCategory) _then)
+      : super(_value, (v) => _then(v as _NoteCategory));
 
   @override
-  _NoteTags get _value => super._value as _NoteTags;
+  _NoteCategory get _value => super._value as _NoteCategory;
 }
 
 /// @nodoc
 
-class _$_NoteTags implements _NoteTags {
-  const _$_NoteTags();
+class _$_NoteCategory implements _NoteCategory {
+  const _$_NoteCategory();
 
   @override
   String toString() {
-    return 'EditorType.noteTags()';
+    return 'EditorType.noteCategory()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _NoteTags);
+        (other.runtimeType == runtimeType && other is _NoteCategory);
   }
 
   @override
@@ -1245,10 +1253,10 @@ class _$_NoteTags implements _NoteTags {
   TResult when<TResult extends Object?>({
     required TResult Function() noteTitle,
     required TResult Function() noteBody,
-    required TResult Function() noteTags,
+    required TResult Function() noteCategory,
     required TResult Function() none,
   }) {
-    return noteTags();
+    return noteCategory();
   }
 
   @override
@@ -1256,10 +1264,10 @@ class _$_NoteTags implements _NoteTags {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? noteTitle,
     TResult Function()? noteBody,
-    TResult Function()? noteTags,
+    TResult Function()? noteCategory,
     TResult Function()? none,
   }) {
-    return noteTags?.call();
+    return noteCategory?.call();
   }
 
   @override
@@ -1267,12 +1275,12 @@ class _$_NoteTags implements _NoteTags {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noteTitle,
     TResult Function()? noteBody,
-    TResult Function()? noteTags,
+    TResult Function()? noteCategory,
     TResult Function()? none,
     required TResult orElse(),
   }) {
-    if (noteTags != null) {
-      return noteTags();
+    if (noteCategory != null) {
+      return noteCategory();
     }
     return orElse();
   }
@@ -1282,10 +1290,10 @@ class _$_NoteTags implements _NoteTags {
   TResult map<TResult extends Object?>({
     required TResult Function(_NoteTitle value) noteTitle,
     required TResult Function(_NoteBody value) noteBody,
-    required TResult Function(_NoteTags value) noteTags,
+    required TResult Function(_NoteCategory value) noteCategory,
     required TResult Function(_None value) none,
   }) {
-    return noteTags(this);
+    return noteCategory(this);
   }
 
   @override
@@ -1293,10 +1301,10 @@ class _$_NoteTags implements _NoteTags {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NoteTitle value)? noteTitle,
     TResult Function(_NoteBody value)? noteBody,
-    TResult Function(_NoteTags value)? noteTags,
+    TResult Function(_NoteCategory value)? noteCategory,
     TResult Function(_None value)? none,
   }) {
-    return noteTags?.call(this);
+    return noteCategory?.call(this);
   }
 
   @override
@@ -1304,19 +1312,19 @@ class _$_NoteTags implements _NoteTags {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NoteTitle value)? noteTitle,
     TResult Function(_NoteBody value)? noteBody,
-    TResult Function(_NoteTags value)? noteTags,
+    TResult Function(_NoteCategory value)? noteCategory,
     TResult Function(_None value)? none,
     required TResult orElse(),
   }) {
-    if (noteTags != null) {
-      return noteTags(this);
+    if (noteCategory != null) {
+      return noteCategory(this);
     }
     return orElse();
   }
 }
 
-abstract class _NoteTags implements EditorType {
-  const factory _NoteTags() = _$_NoteTags;
+abstract class _NoteCategory implements EditorType {
+  const factory _NoteCategory() = _$_NoteCategory;
 }
 
 /// @nodoc
@@ -1359,7 +1367,7 @@ class _$_None implements _None {
   TResult when<TResult extends Object?>({
     required TResult Function() noteTitle,
     required TResult Function() noteBody,
-    required TResult Function() noteTags,
+    required TResult Function() noteCategory,
     required TResult Function() none,
   }) {
     return none();
@@ -1370,7 +1378,7 @@ class _$_None implements _None {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? noteTitle,
     TResult Function()? noteBody,
-    TResult Function()? noteTags,
+    TResult Function()? noteCategory,
     TResult Function()? none,
   }) {
     return none?.call();
@@ -1381,7 +1389,7 @@ class _$_None implements _None {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noteTitle,
     TResult Function()? noteBody,
-    TResult Function()? noteTags,
+    TResult Function()? noteCategory,
     TResult Function()? none,
     required TResult orElse(),
   }) {
@@ -1396,7 +1404,7 @@ class _$_None implements _None {
   TResult map<TResult extends Object?>({
     required TResult Function(_NoteTitle value) noteTitle,
     required TResult Function(_NoteBody value) noteBody,
-    required TResult Function(_NoteTags value) noteTags,
+    required TResult Function(_NoteCategory value) noteCategory,
     required TResult Function(_None value) none,
   }) {
     return none(this);
@@ -1407,7 +1415,7 @@ class _$_None implements _None {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NoteTitle value)? noteTitle,
     TResult Function(_NoteBody value)? noteBody,
-    TResult Function(_NoteTags value)? noteTags,
+    TResult Function(_NoteCategory value)? noteCategory,
     TResult Function(_None value)? none,
   }) {
     return none?.call(this);
@@ -1418,7 +1426,7 @@ class _$_None implements _None {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NoteTitle value)? noteTitle,
     TResult Function(_NoteBody value)? noteBody,
-    TResult Function(_NoteTags value)? noteTags,
+    TResult Function(_NoteCategory value)? noteCategory,
     TResult Function(_None value)? none,
     required TResult orElse(),
   }) {

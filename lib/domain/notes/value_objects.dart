@@ -5,18 +5,18 @@ import 'package:noter/domain/core/value_objects.dart';
 import 'package:noter/domain/core/value_transformers.dart';
 import 'package:noter/domain/core/value_validators.dart';
 
-class TagName extends ValueObject<String> {
+class CategoryName extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
 
-  static const int maxLength = 10;
+  static const int maxLength = 30;
 
-  factory TagName(String input) {
-    return TagName._(
+  factory CategoryName(String input) {
+    return CategoryName._(
         validateMaxStringLength(input, maxLength).flatMap(stringNotEmpty));
   }
 
-  TagName._(this.value);
+  CategoryName._(this.value);
 }
 
 // class List3<T> extends ValueObject<KtList<T>> {

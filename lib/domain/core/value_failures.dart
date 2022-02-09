@@ -9,6 +9,6 @@ abstract class ValueFailure<T> with _$ValueFailure<T> {
 
   const factory ValueFailure.empty({required T failedValue}) = Empty<T>;
 
-  const factory ValueFailure.listTooLong(
-      {required int max, required T failedValue}) = ListTooLong<T>;
+  // const factory ValueFailure.listTooLong(
+  //     {required int max, required T failedValue}) = ListTooLong<T>;
 }

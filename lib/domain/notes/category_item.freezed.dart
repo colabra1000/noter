@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'tag_item.dart';
+part of 'category_item.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,14 +15,14 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$TagItemTearOff {
-  const _$TagItemTearOff();
+class _$CategoryItemTearOff {
+  const _$CategoryItemTearOff();
 
-  _TagItem call(
+  _CategoryItem call(
       {required UniqueId id,
-      required TagName name,
-      Color color = TagItem.defaultColor}) {
-    return _TagItem(
+      required CategoryName name,
+      Color color = CategoryItem.defaultColor}) {
+    return _CategoryItem(
       id: id,
       name: name,
       color: color,
@@ -31,32 +31,34 @@ class _$TagItemTearOff {
 }
 
 /// @nodoc
-const $TagItem = _$TagItemTearOff();
+const $CategoryItem = _$CategoryItemTearOff();
 
 /// @nodoc
-mixin _$TagItem {
+mixin _$CategoryItem {
   UniqueId get id => throw _privateConstructorUsedError;
-  TagName get name => throw _privateConstructorUsedError;
+  CategoryName get name => throw _privateConstructorUsedError;
   Color get color => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $TagItemCopyWith<TagItem> get copyWith => throw _privateConstructorUsedError;
+  $CategoryItemCopyWith<CategoryItem> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TagItemCopyWith<$Res> {
-  factory $TagItemCopyWith(TagItem value, $Res Function(TagItem) then) =
-      _$TagItemCopyWithImpl<$Res>;
-  $Res call({UniqueId id, TagName name, Color color});
+abstract class $CategoryItemCopyWith<$Res> {
+  factory $CategoryItemCopyWith(
+          CategoryItem value, $Res Function(CategoryItem) then) =
+      _$CategoryItemCopyWithImpl<$Res>;
+  $Res call({UniqueId id, CategoryName name, Color color});
 }
 
 /// @nodoc
-class _$TagItemCopyWithImpl<$Res> implements $TagItemCopyWith<$Res> {
-  _$TagItemCopyWithImpl(this._value, this._then);
+class _$CategoryItemCopyWithImpl<$Res> implements $CategoryItemCopyWith<$Res> {
+  _$CategoryItemCopyWithImpl(this._value, this._then);
 
-  final TagItem _value;
+  final CategoryItem _value;
   // ignore: unused_field
-  final $Res Function(TagItem) _then;
+  final $Res Function(CategoryItem) _then;
 
   @override
   $Res call({
@@ -72,7 +74,7 @@ class _$TagItemCopyWithImpl<$Res> implements $TagItemCopyWith<$Res> {
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as TagName,
+              as CategoryName,
       color: color == freezed
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -82,21 +84,24 @@ class _$TagItemCopyWithImpl<$Res> implements $TagItemCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$TagItemCopyWith<$Res> implements $TagItemCopyWith<$Res> {
-  factory _$TagItemCopyWith(_TagItem value, $Res Function(_TagItem) then) =
-      __$TagItemCopyWithImpl<$Res>;
+abstract class _$CategoryItemCopyWith<$Res>
+    implements $CategoryItemCopyWith<$Res> {
+  factory _$CategoryItemCopyWith(
+          _CategoryItem value, $Res Function(_CategoryItem) then) =
+      __$CategoryItemCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId id, TagName name, Color color});
+  $Res call({UniqueId id, CategoryName name, Color color});
 }
 
 /// @nodoc
-class __$TagItemCopyWithImpl<$Res> extends _$TagItemCopyWithImpl<$Res>
-    implements _$TagItemCopyWith<$Res> {
-  __$TagItemCopyWithImpl(_TagItem _value, $Res Function(_TagItem) _then)
-      : super(_value, (v) => _then(v as _TagItem));
+class __$CategoryItemCopyWithImpl<$Res> extends _$CategoryItemCopyWithImpl<$Res>
+    implements _$CategoryItemCopyWith<$Res> {
+  __$CategoryItemCopyWithImpl(
+      _CategoryItem _value, $Res Function(_CategoryItem) _then)
+      : super(_value, (v) => _then(v as _CategoryItem));
 
   @override
-  _TagItem get _value => super._value as _TagItem;
+  _CategoryItem get _value => super._value as _CategoryItem;
 
   @override
   $Res call({
@@ -104,7 +109,7 @@ class __$TagItemCopyWithImpl<$Res> extends _$TagItemCopyWithImpl<$Res>
     Object? name = freezed,
     Object? color = freezed,
   }) {
-    return _then(_TagItem(
+    return _then(_CategoryItem(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -112,7 +117,7 @@ class __$TagItemCopyWithImpl<$Res> extends _$TagItemCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as TagName,
+              as CategoryName,
       color: color == freezed
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -123,30 +128,30 @@ class __$TagItemCopyWithImpl<$Res> extends _$TagItemCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_TagItem implements _TagItem {
-  const _$_TagItem(
+class _$_CategoryItem implements _CategoryItem {
+  const _$_CategoryItem(
       {required this.id,
       required this.name,
-      this.color = TagItem.defaultColor});
+      this.color = CategoryItem.defaultColor});
 
   @override
   final UniqueId id;
   @override
-  final TagName name;
+  final CategoryName name;
   @JsonKey()
   @override
   final Color color;
 
   @override
   String toString() {
-    return 'TagItem(id: $id, name: $name, color: $color)';
+    return 'CategoryItem(id: $id, name: $name, color: $color)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _TagItem &&
+            other is _CategoryItem &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.color, color));
@@ -161,22 +166,24 @@ class _$_TagItem implements _TagItem {
 
   @JsonKey(ignore: true)
   @override
-  _$TagItemCopyWith<_TagItem> get copyWith =>
-      __$TagItemCopyWithImpl<_TagItem>(this, _$identity);
+  _$CategoryItemCopyWith<_CategoryItem> get copyWith =>
+      __$CategoryItemCopyWithImpl<_CategoryItem>(this, _$identity);
 }
 
-abstract class _TagItem implements TagItem {
-  const factory _TagItem(
-      {required UniqueId id, required TagName name, Color color}) = _$_TagItem;
+abstract class _CategoryItem implements CategoryItem {
+  const factory _CategoryItem(
+      {required UniqueId id,
+      required CategoryName name,
+      Color color}) = _$_CategoryItem;
 
   @override
   UniqueId get id;
   @override
-  TagName get name;
+  CategoryName get name;
   @override
   Color get color;
   @override
   @JsonKey(ignore: true)
-  _$TagItemCopyWith<_TagItem> get copyWith =>
+  _$CategoryItemCopyWith<_CategoryItem> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kt_dart/kt.dart';
-import 'package:noter/application/notes/editor/editor_bloc.dart';
-import 'package:noter/application/notes/note_editor/bloc/note_editor_bloc.dart';
+import 'package:noter/application/notes/note_form/editor/editor_bloc.dart';
+import 'package:noter/application/notes/note_form/note_editor/bloc/note_editor_bloc.dart';
 import 'package:noter/domain/core/value_objects.dart';
 import 'package:noter/domain/notes/value_objects.dart';
 import 'package:noter/presentation/core/globalWidgets/text_styles.dart';
@@ -25,12 +25,12 @@ class _NoteBodyState extends State<NoteBody> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<EditorBloc, EditorState>(
-      buildWhen: (previous, current) =>
-          (previous.editorType == const EditorType.none() &&
-              current.editorType == const EditorType.noteBody()) ||
-          (previous.editorType == const EditorType.noteBody() &&
-              current.editorType == const EditorType.none()) ||
-          previous.editorType == const EditorType.none(),
+      // buildWhen: (previous, current) =>
+      //     (previous.editorType == const EditorType.none() &&
+      //         current.editorType == const EditorType.noteBody()) ||
+      //     (previous.editorType == const EditorType.noteBody() &&
+      //         current.editorType == const EditorType.none()) ||
+      //     previous.editorType == const EditorType.none(),
       builder: (context, state) {
         bool isEditing = state.editorType == const EditorType.noteBody();
         return BlocProvider(

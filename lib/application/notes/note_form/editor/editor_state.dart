@@ -14,7 +14,7 @@ class EditorState with _$EditorState {
 class EditorType with _$EditorType {
   const factory EditorType.noteTitle() = _NoteTitle;
   const factory EditorType.noteBody() = _NoteBody;
-  const factory EditorType.noteTags() = _NoteTags;
+  const factory EditorType.noteCategory() = _NoteCategory;
   const factory EditorType.none() = _None;
 }
 // enum EditorType {

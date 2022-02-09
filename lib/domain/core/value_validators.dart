@@ -17,9 +17,9 @@ Either<ValueFailure<String>, String> stringNotEmpty(String input) {
   return left(ValueFailure.empty(failedValue: input));
 }
 
-Either<ValueFailure<KtList<T>>, KtList<T>> validateMaxListLength<T>(
-    KtList<T> input, int maxLength) {
-  if (input.size <= maxLength) return right(input);
+// Either<ValueFailure<KtList<T>>, KtList<T>> validateMaxListLength<T>(
+//     KtList<T> input, int maxLength) {
+//   if (input.size <= maxLength) return right(input);
 
-  return left(ValueFailure.listTooLong(max: maxLength, failedValue: input));
-}
+//   return left(ValueFailure.listTooLong(max: maxLength, failedValue: input));
+// }

@@ -5,8 +5,6 @@ import 'package:noter/presentation/core/widgets/page_scaffold.dart';
 import 'package:noter/presentation/notes/others/all_notes.dart';
 import 'package:noter/presentation/notes/others/note_category.dart';
 
-import 'package:noter/presentation/notes/widgets/top_builder.dart';
-
 class CategoriseNotesPage extends StatefulWidget {
   const CategoriseNotesPage({Key? key}) : super(key: key);
 
@@ -60,9 +58,9 @@ class TabBarWidget extends StatelessWidget {
     return TabBar(
       controller: tabController,
       tabs: tabs,
-      labelColor: textColorDark,
+      labelColor: darkTextColor,
       labelPadding: EdgeInsets.all(10.sp),
-      indicatorColor: textColorDark,
+      indicatorColor: darkTextColor,
     );
   }
 }

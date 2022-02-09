@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:noter/application/notes/editor/editor_bloc.dart';
+import 'package:noter/application/notes/note_form/editor/editor_bloc.dart';
 import 'package:noter/presentation/core/globalWidgets/text_styles.dart';
 import 'package:noter/presentation/notes/widgets/animated_x_container.dart';
 import 'package:noter/presentation/notes/widgets/x_icon_button.dart';
@@ -17,8 +17,8 @@ class _NoteTitleState extends State<NoteTitle> {
   final TextEditingController textEditingController =
       TextEditingController(text: "In the brink of time I wonder");
 
-  final double titlePanelHeight = 120.h;
-  final double expandedTitlePanelHeight = 260.h;
+  final double titlePanelHeight = 80.h;
+  final double expandedTitlePanelHeight = 60.h;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +33,7 @@ class _NoteTitleState extends State<NoteTitle> {
                   ? 0
                   : titlePanelHeight + expandedTitlePanelHeight,
           child: SingleChildScrollView(
+              // scrollDirection: Axis.horizontal,
               child: GestureDetector(
                   onLongPress: () {
                     BlocProvider.of<EditorBloc>(context)
@@ -40,7 +41,10 @@ class _NoteTitleState extends State<NoteTitle> {
                   },
                   child: Stack(
                     children: [
-                      _noteTitleBuilder(),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: _noteTitleBuilder(),
+                      ),
                       _noteTitleOptionsBuilder(isEditing),
                     ],
                   ))),
@@ -79,18 +83,14 @@ class _NoteTitleState extends State<NoteTitle> {
           duration: const Duration(milliseconds: 200),
           height: isEditing ? 50 : 20,
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: TitleTextEditor(
-              textEditingController: textEditingController,
-              isEditing: isEditing),
-        ),
-        Row(
-          children: [
-            Text("Created", style: smallText),
-            const Spacer(),
-            Text("19 April 2021, 20:39 PM", style: smallText),
-          ],
+        SizedBox(
+          width: 720,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: TitleTextEditor(
+                textEditingController: textEditingController,
+                isEditing: isEditing),
+          ),
         ),
       ],
     );
@@ -108,7 +108,7 @@ class TitleTextEditor extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       minLines: 1,
-      maxLines: 4,
+      maxLines: 1,
       controller: textEditingController,
       style: mediumText.copyWith(fontWeight: FontWeight.bold),
       showCursor: isEditing,

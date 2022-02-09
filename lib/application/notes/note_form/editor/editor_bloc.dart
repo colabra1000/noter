@@ -22,11 +22,11 @@ class EditorBloc extends Bloc<EditorEvent, EditorState> {
         toggledNoteTitleEditor: (event) {
           emit(state.copyWith(editorType: const EditorType.noteTitle()));
         },
-        toggledNoteTagEditor: (event) {
+        toggledNoteCategoryEditor: (event) {
           // if (state.editorType == const EditorType.noteTags()) {
           //   emit(state.copyWith(editorType: const EditorType.none()));
           // } else {
-          emit(state.copyWith(editorType: const EditorType.noteTags()));
+          emit(state.copyWith(editorType: const EditorType.noteCategory()));
           // }
         },
         closeAnyEditor: (_CloseAnyEditor value) {
