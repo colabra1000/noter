@@ -1,9 +1,10 @@
-import 'package:kt_dart/collection.dart';
+import 'package:flutter/material.dart';
 import 'package:noter/domain/core/value_failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:noter/domain/core/value_objects.dart';
 import 'package:noter/domain/core/value_transformers.dart';
 import 'package:noter/domain/core/value_validators.dart';
+import 'package:noter/presentation/core/globalWidgets/text_styles.dart';
 
 class CategoryName extends ValueObject<String> {
   @override
@@ -38,15 +39,17 @@ class CategoryName extends ValueObject<String> {
 class NoteBullet extends NoteItem {
   @override
   Either<ValueFailure<String>, String> value;
+  final String hint = "empty list item...";
+  final Color color = textColor;
 
   factory NoteBullet(String input) {
     return NoteBullet._(
       validateMaxStringLength(input, 3000)
-          .flatMap((a) => stringNotEmpty(input))
+          // .flatMap((a) => stringNotEmpty(input))
           .fold(
-            (l) => left(l),
-            (r) => right(removeExtraStrings(r)),
-          ),
+        (l) => left(l),
+        (r) => right(removeExtraStrings(r)),
+      ),
     );
   }
 
@@ -56,11 +59,17 @@ class NoteBullet extends NoteItem {
 class NoteString extends NoteItem {
   @override
   Either<ValueFailure<String>, String> value;
+  final String hint = "...";
+  final Color color = textColor;
 
-  factory NoteString(String input) {
+  factory NoteString(String input, {bool? focus}) {
     return NoteString._(
+      // stringNotEmpty(input).fold(
       stringNotEmpty(input).fold(
-        (f) => left(f),
+        (f) {
+          print("zeng");
+          return left(f);
+        },
         (r) => right(removeExtraStrings(r)),
       ),
     );

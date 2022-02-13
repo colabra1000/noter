@@ -20,12 +20,10 @@ class _$NoteItemPayloadTearOff {
 
   _NoteBody noteBody(
       {required UniqueId uniqueId,
-      required String payload,
-      required int cursorPosition}) {
+      required TextEditingController textEditingController}) {
     return _NoteBody(
       uniqueId: uniqueId,
-      payload: payload,
-      cursorPosition: cursorPosition,
+      textEditingController: textEditingController,
     );
   }
 }
@@ -36,25 +34,27 @@ const $NoteItemPayload = _$NoteItemPayloadTearOff();
 /// @nodoc
 mixin _$NoteItemPayload {
   UniqueId get uniqueId => throw _privateConstructorUsedError;
-  String get payload => throw _privateConstructorUsedError;
-  int get cursorPosition => throw _privateConstructorUsedError;
+  TextEditingController get textEditingController =>
+      throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            UniqueId uniqueId, String payload, int cursorPosition)
+            UniqueId uniqueId, TextEditingController textEditingController)
         noteBody,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(UniqueId uniqueId, String payload, int cursorPosition)?
+    TResult Function(
+            UniqueId uniqueId, TextEditingController textEditingController)?
         noteBody,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UniqueId uniqueId, String payload, int cursorPosition)?
+    TResult Function(
+            UniqueId uniqueId, TextEditingController textEditingController)?
         noteBody,
     required TResult orElse(),
   }) =>
@@ -86,7 +86,7 @@ abstract class $NoteItemPayloadCopyWith<$Res> {
   factory $NoteItemPayloadCopyWith(
           NoteItemPayload value, $Res Function(NoteItemPayload) then) =
       _$NoteItemPayloadCopyWithImpl<$Res>;
-  $Res call({UniqueId uniqueId, String payload, int cursorPosition});
+  $Res call({UniqueId uniqueId, TextEditingController textEditingController});
 }
 
 /// @nodoc
@@ -101,22 +101,17 @@ class _$NoteItemPayloadCopyWithImpl<$Res>
   @override
   $Res call({
     Object? uniqueId = freezed,
-    Object? payload = freezed,
-    Object? cursorPosition = freezed,
+    Object? textEditingController = freezed,
   }) {
     return _then(_value.copyWith(
       uniqueId: uniqueId == freezed
           ? _value.uniqueId
           : uniqueId // ignore: cast_nullable_to_non_nullable
               as UniqueId,
-      payload: payload == freezed
-          ? _value.payload
-          : payload // ignore: cast_nullable_to_non_nullable
-              as String,
-      cursorPosition: cursorPosition == freezed
-          ? _value.cursorPosition
-          : cursorPosition // ignore: cast_nullable_to_non_nullable
-              as int,
+      textEditingController: textEditingController == freezed
+          ? _value.textEditingController
+          : textEditingController // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
     ));
   }
 }
@@ -127,7 +122,7 @@ abstract class _$NoteBodyCopyWith<$Res>
   factory _$NoteBodyCopyWith(_NoteBody value, $Res Function(_NoteBody) then) =
       __$NoteBodyCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId uniqueId, String payload, int cursorPosition});
+  $Res call({UniqueId uniqueId, TextEditingController textEditingController});
 }
 
 /// @nodoc
@@ -142,22 +137,17 @@ class __$NoteBodyCopyWithImpl<$Res> extends _$NoteItemPayloadCopyWithImpl<$Res>
   @override
   $Res call({
     Object? uniqueId = freezed,
-    Object? payload = freezed,
-    Object? cursorPosition = freezed,
+    Object? textEditingController = freezed,
   }) {
     return _then(_NoteBody(
       uniqueId: uniqueId == freezed
           ? _value.uniqueId
           : uniqueId // ignore: cast_nullable_to_non_nullable
               as UniqueId,
-      payload: payload == freezed
-          ? _value.payload
-          : payload // ignore: cast_nullable_to_non_nullable
-              as String,
-      cursorPosition: cursorPosition == freezed
-          ? _value.cursorPosition
-          : cursorPosition // ignore: cast_nullable_to_non_nullable
-              as int,
+      textEditingController: textEditingController == freezed
+          ? _value.textEditingController
+          : textEditingController // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
     ));
   }
 }
@@ -166,20 +156,16 @@ class __$NoteBodyCopyWithImpl<$Res> extends _$NoteItemPayloadCopyWithImpl<$Res>
 
 class _$_NoteBody implements _NoteBody {
   const _$_NoteBody(
-      {required this.uniqueId,
-      required this.payload,
-      required this.cursorPosition});
+      {required this.uniqueId, required this.textEditingController});
 
   @override
   final UniqueId uniqueId;
   @override
-  final String payload;
-  @override
-  final int cursorPosition;
+  final TextEditingController textEditingController;
 
   @override
   String toString() {
-    return 'NoteItemPayload.noteBody(uniqueId: $uniqueId, payload: $payload, cursorPosition: $cursorPosition)';
+    return 'NoteItemPayload.noteBody(uniqueId: $uniqueId, textEditingController: $textEditingController)';
   }
 
   @override
@@ -188,17 +174,15 @@ class _$_NoteBody implements _NoteBody {
         (other.runtimeType == runtimeType &&
             other is _NoteBody &&
             const DeepCollectionEquality().equals(other.uniqueId, uniqueId) &&
-            const DeepCollectionEquality().equals(other.payload, payload) &&
             const DeepCollectionEquality()
-                .equals(other.cursorPosition, cursorPosition));
+                .equals(other.textEditingController, textEditingController));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(uniqueId),
-      const DeepCollectionEquality().hash(payload),
-      const DeepCollectionEquality().hash(cursorPosition));
+      const DeepCollectionEquality().hash(textEditingController));
 
   @JsonKey(ignore: true)
   @override
@@ -209,30 +193,32 @@ class _$_NoteBody implements _NoteBody {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            UniqueId uniqueId, String payload, int cursorPosition)
+            UniqueId uniqueId, TextEditingController textEditingController)
         noteBody,
   }) {
-    return noteBody(uniqueId, payload, cursorPosition);
+    return noteBody(uniqueId, textEditingController);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(UniqueId uniqueId, String payload, int cursorPosition)?
+    TResult Function(
+            UniqueId uniqueId, TextEditingController textEditingController)?
         noteBody,
   }) {
-    return noteBody?.call(uniqueId, payload, cursorPosition);
+    return noteBody?.call(uniqueId, textEditingController);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UniqueId uniqueId, String payload, int cursorPosition)?
+    TResult Function(
+            UniqueId uniqueId, TextEditingController textEditingController)?
         noteBody,
     required TResult orElse(),
   }) {
     if (noteBody != null) {
-      return noteBody(uniqueId, payload, cursorPosition);
+      return noteBody(uniqueId, textEditingController);
     }
     return orElse();
   }
@@ -269,15 +255,12 @@ class _$_NoteBody implements _NoteBody {
 abstract class _NoteBody implements NoteItemPayload {
   const factory _NoteBody(
       {required UniqueId uniqueId,
-      required String payload,
-      required int cursorPosition}) = _$_NoteBody;
+      required TextEditingController textEditingController}) = _$_NoteBody;
 
   @override
   UniqueId get uniqueId;
   @override
-  String get payload;
-  @override
-  int get cursorPosition;
+  TextEditingController get textEditingController;
   @override
   @JsonKey(ignore: true)
   _$NoteBodyCopyWith<_NoteBody> get copyWith =>

@@ -5,7 +5,7 @@ TextStyle tinyText = TextStyle(fontSize: 12.sp);
 
 TextStyle smallText = TextStyle(fontSize: 13.sp);
 
-TextStyle mediumText = TextStyle(fontSize: 18.sp);
+TextStyle mediumText = TextStyle(fontSize: 15.sp);
 
 TextStyle largeText = TextStyle(fontSize: 30.sp);
 

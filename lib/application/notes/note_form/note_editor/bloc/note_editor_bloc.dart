@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter_lorem/flutter_lorem.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:noter/domain/core/value_objects.dart';
@@ -12,105 +13,99 @@ part 'note_editor_bloc.freezed.dart';
 
 class NoteEditorBloc extends Bloc<NoteEditorEvent, NoteEditorState> {
   KtList<NoteItem> allNoteItems = KtList.from([
-    NoteString("Sed ut perspiciatis unde omnis iste natus"
-        " error sit voluptatem accusantium"
-        " doloremque laudantium, totam rem aperiam,"
-        " eaque ipsa quae ab illo inventore veritatis"
-        " et quasi architecto beatae vitae dicta sunt"),
-    NoteBullet(" explicabo. Nemo enim ipsam voluptatem quia"),
-    NoteBullet(" explicabo. Nemo enim ipsam voluptatem quia"),
-    NoteString("Sed ut perspiciatis unde omnis iste natus"
-        " error sit voluptatem accusantium"
-        " doloremque laudantium, totam rem aperiam,"
-        " eaque ipsa quae ab illo inventore veritatis"
-        " et quasi architecto beatae vitae dicta sunt"),
-    NoteString("Sed ut perspiciatis unde omnis iste natus"
-        " error sit voluptatem accusantium"
-        " doloremque laudantium, totam rem aperiam,"
-        " eaque ipsa quae ab illo inventore veritatis"
-        " et quasi architecto beatae vitae dicta sunt"),
-    NoteBullet(" explicabo. Nemo enim ipsam voluptatem quia"),
-    NoteBullet(" explicabo. Nemo enim ipsam voluptatem quia"),
-    NoteString("Sed ut perspiciatis unde omnis iste natus"
-        " error sit voluptatem accusantium"
-        " doloremque laudantium, totam rem aperiam,"
-        " eaque ipsa quae ab illo inventore veritatis"
-        " et quasi architecto beatae vitae dicta sunt"),
-    NoteString("Sed ut perspiciatis unde omnis iste natus"
-        " error sit voluptatem accusantium"
-        " doloremque laudantium, totam rem aperiam,"
-        " eaque ipsa quae ab illo inventore veritatis"
-        " et quasi architecto beatae vitae dicta sunt"),
-    NoteBullet(" explicabo. Nemo enim ipsam voluptatem quia"),
-    NoteBullet(" explicabo. Nemo enim ipsam voluptatem quia"),
-    NoteString("Sed ut perspiciatis unde omnis iste natus"
-        " error sit voluptatem accusantium"
-        " doloremque laudantium, totam rem aperiam,"
-        " eaque ipsa quae ab illo inventore veritatis"
-        " et quasi architecto beatae vitae dicta sunt"),
+    // NoteString(lorem(paragraphs: 1, words: 8)),
+    // NoteBullet(lorem(paragraphs: 1, words: 8)),
+    // NoteBullet(lorem(paragraphs: 1, words: 7)),
+    NoteString(lorem(paragraphs: 2, words: 8)),
+    // NoteString(lorem(paragraphs: 3, words: 10)),
+    // NoteBullet(lorem(paragraphs: 1, words: 5)),
+    NoteBullet(lorem(paragraphs: 1, words: 7)),
+    // NoteString(lorem(paragraphs: 1, words: 4)),
+    NoteString(""),
+    // NoteBullet(lorem(paragraphs: 1, words: 8)),
+    // NoteBullet(lorem(paragraphs: 1, words: 4)),
+    // NoteString(lorem(paragraphs: 1, words: 4)),
   ]);
 
   NoteEditorBloc() : super(NoteEditorState.initial()) {
     on<NoteEditorEvent>((event, emit) {
       event.map(
         started: (event) {
-          emit(state.copyWith(allNoteItems: allNoteItems));
+          emit(state.copyWith(allNoteItems: _foldNoteItems(allNoteItems)));
         },
-        saveNoteItemEvent: (event) {},
-        currentStateSavedEvent: (event) {
-          emit(state.copyWith(focusedNoteItemPayload: optionOf(event.payload)));
-          // emit(state.copyWith())
-        },
-        newBulletAddedEvent: (event) {
-          //if it exists
-          state.focusedNoteItemPayload.map((focusedNoteItemPayload) {
-            focusedNoteItemPayload.map(noteBody: (noteBody) {
-              // List<NoteItem> allNoteItemDartList =  allNoteItems.();
-              // int notePosition = allNoteItemDartList.indexWhere((noteItem) =>
-              //     noteItem.uniqueId == focusedNoteItemPayload.uniqueId);
+        newBulletAddedEvent: (event) async {
+          String left = event.text.substring(0, event.cursorStart);
+          String right =
+              event.text.substring(event.cursorStart, event.text.length);
 
-              KtMutableList<NoteItem> allNoteMutableItems =
-                  state.allNoteItems.toMutableList();
-              int notePosition = allNoteMutableItems.indexOfFirst(
-                  (p0) => p0.uniqueId == focusedNoteItemPayload.uniqueId);
+          KtMutableList<NoteItem> ktml = state.allNoteItems.toMutableList();
+          NoteItem? noteItem;
 
-              //split the notePayload
-              String payload = focusedNoteItemPayload.payload;
-              NoteItem left = NoteBullet(
-                  payload.substring(0, focusedNoteItemPayload.cursorPosition));
-              NoteItem right = NoteBullet(payload.substring(
-                  focusedNoteItemPayload.cursorPosition, payload.length));
-
-              allNoteMutableItems.addAllAt(notePosition, listOf(left, right));
-
-              print("zen");
-              emit(state.copyWith(allNoteItems: allNoteMutableItems));
-            });
-
-            // if (a is NoteItemPayload) {
-            //   String payload = a.noteBody;
-            //   String left = payload.substring(0, a.cursorPosition);
-            //   String right =
-            //       payload.substring(a.cursorPosition, a.noteBody.length);
-
-            //   List<NoteItem> allNoteItemDartList = allNoteItems.asList();
-            //   int index = allNoteItemDartList
-            //       .indexWhere((element) => element.uniqueId == a.uniqueId);
-
-            //   allNoteItemDartList.removeAt(index);
-            //   // allNoteItemDartList.insert(index, )
-
-            //   print(right);
-            //   print(left);
-            // }
+          int i = ktml.indexOfFirst((p0) {
+            bool found = p0.uniqueId == event.id;
+            if (found) {
+              noteItem = p0;
+            }
+            return found;
           });
 
-          //find the note using unnique id,
-          //split the note
-          //and add them back to the array
-          //observe what happens
+          ktml.removeAt(i);
+
+          NoteItem newItem;
+          if (noteItem is NoteBullet) {
+            newItem = NoteBullet(right);
+            ktml.addAllAt(i, listFrom([NoteBullet(left), newItem]));
+          } else {
+            newItem = NoteBullet("");
+            ktml.addAllAt(
+                i, listFrom([NoteString(left), newItem, NoteString(right)]));
+          }
+
+          emit(state.copyWith(
+              allNoteItems: _foldNoteItems(ktml),
+              newItemToFocusId: optionOf(newItem.uniqueId)));
+
+          // add(NoteEditorEvent.currentStateSavedEvent());
+        },
+        noteItemEmptiedEvent: (event) {
+          print("emtied");
+          final allNoteItems = state.allNoteItems.filter((p0) {
+            return !(p0 is NoteString && p0.uniqueId == event.id);
+          });
+          emit(state.copyWith(
+            allNoteItems: _foldNoteItems(allNoteItems),
+          ));
         },
       );
+    });
+  }
+
+  //match consequtive note strings and remove noteitems with error.
+  KtMutableList<NoteItem> _foldNoteItems(KtList<NoteItem> noteItemList) {
+    return noteItemList.fold(KtMutableList.empty(), (acc, p1) {
+      if (p1.value.isLeft()) {
+        return acc;
+      }
+
+      // String note
+
+      // if(p1.value.foldLeft(z, (previous, r) => null))
+
+      if (acc.isEmpty()) {
+        acc.add(p1);
+        return acc;
+      }
+
+      NoteItem lastElement = acc[acc.lastIndex];
+
+      if (lastElement is NoteString && p1 is NoteString) {
+        acc[acc.lastIndex] =
+            NoteString(lastElement.getOrCrash + "\n" + p1.getOrCrash);
+        return acc;
+      }
+
+      acc.add(p1);
+      return acc;
     });
   }
 }

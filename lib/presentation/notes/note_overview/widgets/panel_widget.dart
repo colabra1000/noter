@@ -8,7 +8,7 @@ import 'package:noter/presentation/core/globalWidgets/inner_shadow_container.dar
 import 'package:noter/presentation/core/globalWidgets/text_styles.dart';
 import 'package:noter/presentation/notes/widgets/animated_x_container.dart';
 import 'package:noter/presentation/notes/widgets/categoryItemWidget.dart';
-import 'package:noter/presentation/notes/widgets/note_category.dart';
+import 'package:noter/presentation/notes/note_form/widgets/note_category.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class PanelWidget extends StatefulWidget {

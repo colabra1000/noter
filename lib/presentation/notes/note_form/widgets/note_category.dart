@@ -7,7 +7,7 @@ import 'package:noter/domain/notes/category_item.dart';
 import 'package:noter/presentation/core/globalWidgets/inner_shadow_container.dart';
 import 'package:noter/presentation/core/globalWidgets/text_styles.dart';
 
-import 'categoryItemWidget.dart';
+import '../../widgets/categoryItemWidget.dart';
 
 class NoteCategory extends StatefulWidget {
   const NoteCategory({Key? key}) : super(key: key);
@@ -148,7 +148,7 @@ class _NoteCategoryState extends State<NoteCategory> {
 
         if (isEditing) {
           BlocProvider.of<EditorBloc>(context)
-              .add(const EditorEvent.closeAnyEditor());
+              .add(const EditorEvent.closeActiveEditor());
         } else {
           BlocProvider.of<EditorBloc>(context)
               .add(const EditorEvent.toggledNoteCategoryEditor());

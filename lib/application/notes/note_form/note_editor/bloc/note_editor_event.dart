@@ -4,26 +4,13 @@ part of 'note_editor_bloc.dart';
 class NoteEditorEvent with _$NoteEditorEvent {
   const factory NoteEditorEvent.started() = _Started;
 
-  const factory NoteEditorEvent.saveNoteItemEvent({
+  const factory NoteEditorEvent.noteItemEmptiedEvent({required UniqueId id}) =
+      _NoteItemEmptiedEvent;
+
+  const factory NoteEditorEvent.newBulletAddedEvent({
+    required String text,
     required UniqueId id,
-    required String payload,
-  }) = _SaveNoteItemEvent;
-
-  const factory NoteEditorEvent.currentStateSavedEvent({
-    required NoteItemPayload payload,
-  }) = _CurrentStateSavedEvent;
-
-  const factory NoteEditorEvent.newBulletAddedEvent() = _NewBulletAddedEvent;
-
-  // const factory NoteEditorEvent.focusChangedEvent({
-  //   required TextEditingController textController,
-  //   required UniqueId noteItemId,
-  //   required FocusNode focusNode,
-  // }) = _FocusChangedEvent;
-
-  // const factory NoteEditorEvent.noteFieldChanged({
-  //   required String noteBody,
-  //   required int cursorPosition,
-  //   required UniqueId noteItemId,
-  // }) = _NoteFieldChanged;
+    required int cursorStart,
+    required int cursorEnd,
+  }) = _NewBulletAddedEvent;
 }

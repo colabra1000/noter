@@ -9,5 +9,5 @@ class EditorEvent with _$EditorEvent {
 
   const factory EditorEvent.toggledNoteCategoryEditor() = _ToggledNoteTagEditor;
 
-  const factory EditorEvent.closeAnyEditor() = _CloseAnyEditor;
+  const factory EditorEvent.closeActiveEditor() = _CloseAnyEditor;
 }

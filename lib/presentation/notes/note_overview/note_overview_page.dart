@@ -64,7 +64,7 @@ class _NoteOverviewPageState extends State<NoteOverviewPage> {
                 children: [
                   SizedBox(
                     height: appBarHeight,
-                    child: const TopBuilder(editing: false),
+                    child: const TopBuilder(),
                   ),
                   const SizedBox(height: 20),
                   Expanded(

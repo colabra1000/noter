@@ -22,23 +22,23 @@ class _$NoteEditorEventTearOff {
     return const _Started();
   }
 
-  _SaveNoteItemEvent saveNoteItemEvent(
-      {required UniqueId id, required String payload}) {
-    return _SaveNoteItemEvent(
+  _NoteItemEmptiedEvent noteItemEmptiedEvent({required UniqueId id}) {
+    return _NoteItemEmptiedEvent(
       id: id,
-      payload: payload,
     );
   }
 
-  _CurrentStateSavedEvent currentStateSavedEvent(
-      {required NoteItemPayload payload}) {
-    return _CurrentStateSavedEvent(
-      payload: payload,
+  _NewBulletAddedEvent newBulletAddedEvent(
+      {required String text,
+      required UniqueId id,
+      required int cursorStart,
+      required int cursorEnd}) {
+    return _NewBulletAddedEvent(
+      text: text,
+      id: id,
+      cursorStart: cursorStart,
+      cursorEnd: cursorEnd,
     );
-  }
-
-  _NewBulletAddedEvent newBulletAddedEvent() {
-    return const _NewBulletAddedEvent();
   }
 }
 
@@ -50,50 +50,47 @@ mixin _$NoteEditorEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(UniqueId id, String payload) saveNoteItemEvent,
-    required TResult Function(NoteItemPayload payload) currentStateSavedEvent,
-    required TResult Function() newBulletAddedEvent,
+    required TResult Function(UniqueId id) noteItemEmptiedEvent,
+    required TResult Function(
+            String text, UniqueId id, int cursorStart, int cursorEnd)
+        newBulletAddedEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(UniqueId id, String payload)? saveNoteItemEvent,
-    TResult Function(NoteItemPayload payload)? currentStateSavedEvent,
-    TResult Function()? newBulletAddedEvent,
+    TResult Function(UniqueId id)? noteItemEmptiedEvent,
+    TResult Function(String text, UniqueId id, int cursorStart, int cursorEnd)?
+        newBulletAddedEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(UniqueId id, String payload)? saveNoteItemEvent,
-    TResult Function(NoteItemPayload payload)? currentStateSavedEvent,
-    TResult Function()? newBulletAddedEvent,
+    TResult Function(UniqueId id)? noteItemEmptiedEvent,
+    TResult Function(String text, UniqueId id, int cursorStart, int cursorEnd)?
+        newBulletAddedEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_SaveNoteItemEvent value) saveNoteItemEvent,
-    required TResult Function(_CurrentStateSavedEvent value)
-        currentStateSavedEvent,
+    required TResult Function(_NoteItemEmptiedEvent value) noteItemEmptiedEvent,
     required TResult Function(_NewBulletAddedEvent value) newBulletAddedEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_SaveNoteItemEvent value)? saveNoteItemEvent,
-    TResult Function(_CurrentStateSavedEvent value)? currentStateSavedEvent,
+    TResult Function(_NoteItemEmptiedEvent value)? noteItemEmptiedEvent,
     TResult Function(_NewBulletAddedEvent value)? newBulletAddedEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_SaveNoteItemEvent value)? saveNoteItemEvent,
-    TResult Function(_CurrentStateSavedEvent value)? currentStateSavedEvent,
+    TResult Function(_NoteItemEmptiedEvent value)? noteItemEmptiedEvent,
     TResult Function(_NewBulletAddedEvent value)? newBulletAddedEvent,
     required TResult orElse(),
   }) =>
@@ -156,9 +153,10 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(UniqueId id, String payload) saveNoteItemEvent,
-    required TResult Function(NoteItemPayload payload) currentStateSavedEvent,
-    required TResult Function() newBulletAddedEvent,
+    required TResult Function(UniqueId id) noteItemEmptiedEvent,
+    required TResult Function(
+            String text, UniqueId id, int cursorStart, int cursorEnd)
+        newBulletAddedEvent,
   }) {
     return started();
   }
@@ -167,9 +165,9 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(UniqueId id, String payload)? saveNoteItemEvent,
-    TResult Function(NoteItemPayload payload)? currentStateSavedEvent,
-    TResult Function()? newBulletAddedEvent,
+    TResult Function(UniqueId id)? noteItemEmptiedEvent,
+    TResult Function(String text, UniqueId id, int cursorStart, int cursorEnd)?
+        newBulletAddedEvent,
   }) {
     return started?.call();
   }
@@ -178,9 +176,9 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(UniqueId id, String payload)? saveNoteItemEvent,
-    TResult Function(NoteItemPayload payload)? currentStateSavedEvent,
-    TResult Function()? newBulletAddedEvent,
+    TResult Function(UniqueId id)? noteItemEmptiedEvent,
+    TResult Function(String text, UniqueId id, int cursorStart, int cursorEnd)?
+        newBulletAddedEvent,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -193,9 +191,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_SaveNoteItemEvent value) saveNoteItemEvent,
-    required TResult Function(_CurrentStateSavedEvent value)
-        currentStateSavedEvent,
+    required TResult Function(_NoteItemEmptiedEvent value) noteItemEmptiedEvent,
     required TResult Function(_NewBulletAddedEvent value) newBulletAddedEvent,
   }) {
     return started(this);
@@ -205,8 +201,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_SaveNoteItemEvent value)? saveNoteItemEvent,
-    TResult Function(_CurrentStateSavedEvent value)? currentStateSavedEvent,
+    TResult Function(_NoteItemEmptiedEvent value)? noteItemEmptiedEvent,
     TResult Function(_NewBulletAddedEvent value)? newBulletAddedEvent,
   }) {
     return started?.call(this);
@@ -216,8 +211,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_SaveNoteItemEvent value)? saveNoteItemEvent,
-    TResult Function(_CurrentStateSavedEvent value)? currentStateSavedEvent,
+    TResult Function(_NoteItemEmptiedEvent value)? noteItemEmptiedEvent,
     TResult Function(_NewBulletAddedEvent value)? newBulletAddedEvent,
     required TResult orElse(),
   }) {
@@ -233,269 +227,102 @@ abstract class _Started implements NoteEditorEvent {
 }
 
 /// @nodoc
-abstract class _$SaveNoteItemEventCopyWith<$Res> {
-  factory _$SaveNoteItemEventCopyWith(
-          _SaveNoteItemEvent value, $Res Function(_SaveNoteItemEvent) then) =
-      __$SaveNoteItemEventCopyWithImpl<$Res>;
-  $Res call({UniqueId id, String payload});
+abstract class _$NoteItemEmptiedEventCopyWith<$Res> {
+  factory _$NoteItemEmptiedEventCopyWith(_NoteItemEmptiedEvent value,
+          $Res Function(_NoteItemEmptiedEvent) then) =
+      __$NoteItemEmptiedEventCopyWithImpl<$Res>;
+  $Res call({UniqueId id});
 }
 
 /// @nodoc
-class __$SaveNoteItemEventCopyWithImpl<$Res>
+class __$NoteItemEmptiedEventCopyWithImpl<$Res>
     extends _$NoteEditorEventCopyWithImpl<$Res>
-    implements _$SaveNoteItemEventCopyWith<$Res> {
-  __$SaveNoteItemEventCopyWithImpl(
-      _SaveNoteItemEvent _value, $Res Function(_SaveNoteItemEvent) _then)
-      : super(_value, (v) => _then(v as _SaveNoteItemEvent));
+    implements _$NoteItemEmptiedEventCopyWith<$Res> {
+  __$NoteItemEmptiedEventCopyWithImpl(
+      _NoteItemEmptiedEvent _value, $Res Function(_NoteItemEmptiedEvent) _then)
+      : super(_value, (v) => _then(v as _NoteItemEmptiedEvent));
 
   @override
-  _SaveNoteItemEvent get _value => super._value as _SaveNoteItemEvent;
+  _NoteItemEmptiedEvent get _value => super._value as _NoteItemEmptiedEvent;
 
   @override
   $Res call({
     Object? id = freezed,
-    Object? payload = freezed,
   }) {
-    return _then(_SaveNoteItemEvent(
+    return _then(_NoteItemEmptiedEvent(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
-      payload: payload == freezed
-          ? _value.payload
-          : payload // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_SaveNoteItemEvent implements _SaveNoteItemEvent {
-  const _$_SaveNoteItemEvent({required this.id, required this.payload});
+class _$_NoteItemEmptiedEvent implements _NoteItemEmptiedEvent {
+  const _$_NoteItemEmptiedEvent({required this.id});
 
   @override
   final UniqueId id;
-  @override
-  final String payload;
 
   @override
   String toString() {
-    return 'NoteEditorEvent.saveNoteItemEvent(id: $id, payload: $payload)';
+    return 'NoteEditorEvent.noteItemEmptiedEvent(id: $id)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SaveNoteItemEvent &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.payload, payload));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(payload));
-
-  @JsonKey(ignore: true)
-  @override
-  _$SaveNoteItemEventCopyWith<_SaveNoteItemEvent> get copyWith =>
-      __$SaveNoteItemEventCopyWithImpl<_SaveNoteItemEvent>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function(UniqueId id, String payload) saveNoteItemEvent,
-    required TResult Function(NoteItemPayload payload) currentStateSavedEvent,
-    required TResult Function() newBulletAddedEvent,
-  }) {
-    return saveNoteItemEvent(id, payload);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(UniqueId id, String payload)? saveNoteItemEvent,
-    TResult Function(NoteItemPayload payload)? currentStateSavedEvent,
-    TResult Function()? newBulletAddedEvent,
-  }) {
-    return saveNoteItemEvent?.call(id, payload);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(UniqueId id, String payload)? saveNoteItemEvent,
-    TResult Function(NoteItemPayload payload)? currentStateSavedEvent,
-    TResult Function()? newBulletAddedEvent,
-    required TResult orElse(),
-  }) {
-    if (saveNoteItemEvent != null) {
-      return saveNoteItemEvent(id, payload);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_SaveNoteItemEvent value) saveNoteItemEvent,
-    required TResult Function(_CurrentStateSavedEvent value)
-        currentStateSavedEvent,
-    required TResult Function(_NewBulletAddedEvent value) newBulletAddedEvent,
-  }) {
-    return saveNoteItemEvent(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_SaveNoteItemEvent value)? saveNoteItemEvent,
-    TResult Function(_CurrentStateSavedEvent value)? currentStateSavedEvent,
-    TResult Function(_NewBulletAddedEvent value)? newBulletAddedEvent,
-  }) {
-    return saveNoteItemEvent?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_SaveNoteItemEvent value)? saveNoteItemEvent,
-    TResult Function(_CurrentStateSavedEvent value)? currentStateSavedEvent,
-    TResult Function(_NewBulletAddedEvent value)? newBulletAddedEvent,
-    required TResult orElse(),
-  }) {
-    if (saveNoteItemEvent != null) {
-      return saveNoteItemEvent(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SaveNoteItemEvent implements NoteEditorEvent {
-  const factory _SaveNoteItemEvent(
-      {required UniqueId id, required String payload}) = _$_SaveNoteItemEvent;
-
-  UniqueId get id;
-  String get payload;
-  @JsonKey(ignore: true)
-  _$SaveNoteItemEventCopyWith<_SaveNoteItemEvent> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$CurrentStateSavedEventCopyWith<$Res> {
-  factory _$CurrentStateSavedEventCopyWith(_CurrentStateSavedEvent value,
-          $Res Function(_CurrentStateSavedEvent) then) =
-      __$CurrentStateSavedEventCopyWithImpl<$Res>;
-  $Res call({NoteItemPayload payload});
-
-  $NoteItemPayloadCopyWith<$Res> get payload;
-}
-
-/// @nodoc
-class __$CurrentStateSavedEventCopyWithImpl<$Res>
-    extends _$NoteEditorEventCopyWithImpl<$Res>
-    implements _$CurrentStateSavedEventCopyWith<$Res> {
-  __$CurrentStateSavedEventCopyWithImpl(_CurrentStateSavedEvent _value,
-      $Res Function(_CurrentStateSavedEvent) _then)
-      : super(_value, (v) => _then(v as _CurrentStateSavedEvent));
-
-  @override
-  _CurrentStateSavedEvent get _value => super._value as _CurrentStateSavedEvent;
-
-  @override
-  $Res call({
-    Object? payload = freezed,
-  }) {
-    return _then(_CurrentStateSavedEvent(
-      payload: payload == freezed
-          ? _value.payload
-          : payload // ignore: cast_nullable_to_non_nullable
-              as NoteItemPayload,
-    ));
-  }
-
-  @override
-  $NoteItemPayloadCopyWith<$Res> get payload {
-    return $NoteItemPayloadCopyWith<$Res>(_value.payload, (value) {
-      return _then(_value.copyWith(payload: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$_CurrentStateSavedEvent implements _CurrentStateSavedEvent {
-  const _$_CurrentStateSavedEvent({required this.payload});
-
-  @override
-  final NoteItemPayload payload;
-
-  @override
-  String toString() {
-    return 'NoteEditorEvent.currentStateSavedEvent(payload: $payload)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _CurrentStateSavedEvent &&
-            const DeepCollectionEquality().equals(other.payload, payload));
+            other is _NoteItemEmptiedEvent &&
+            const DeepCollectionEquality().equals(other.id, id));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(payload));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(id));
 
   @JsonKey(ignore: true)
   @override
-  _$CurrentStateSavedEventCopyWith<_CurrentStateSavedEvent> get copyWith =>
-      __$CurrentStateSavedEventCopyWithImpl<_CurrentStateSavedEvent>(
+  _$NoteItemEmptiedEventCopyWith<_NoteItemEmptiedEvent> get copyWith =>
+      __$NoteItemEmptiedEventCopyWithImpl<_NoteItemEmptiedEvent>(
           this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(UniqueId id, String payload) saveNoteItemEvent,
-    required TResult Function(NoteItemPayload payload) currentStateSavedEvent,
-    required TResult Function() newBulletAddedEvent,
+    required TResult Function(UniqueId id) noteItemEmptiedEvent,
+    required TResult Function(
+            String text, UniqueId id, int cursorStart, int cursorEnd)
+        newBulletAddedEvent,
   }) {
-    return currentStateSavedEvent(payload);
+    return noteItemEmptiedEvent(id);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(UniqueId id, String payload)? saveNoteItemEvent,
-    TResult Function(NoteItemPayload payload)? currentStateSavedEvent,
-    TResult Function()? newBulletAddedEvent,
+    TResult Function(UniqueId id)? noteItemEmptiedEvent,
+    TResult Function(String text, UniqueId id, int cursorStart, int cursorEnd)?
+        newBulletAddedEvent,
   }) {
-    return currentStateSavedEvent?.call(payload);
+    return noteItemEmptiedEvent?.call(id);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(UniqueId id, String payload)? saveNoteItemEvent,
-    TResult Function(NoteItemPayload payload)? currentStateSavedEvent,
-    TResult Function()? newBulletAddedEvent,
+    TResult Function(UniqueId id)? noteItemEmptiedEvent,
+    TResult Function(String text, UniqueId id, int cursorStart, int cursorEnd)?
+        newBulletAddedEvent,
     required TResult orElse(),
   }) {
-    if (currentStateSavedEvent != null) {
-      return currentStateSavedEvent(payload);
+    if (noteItemEmptiedEvent != null) {
+      return noteItemEmptiedEvent(id);
     }
     return orElse();
   }
@@ -504,48 +331,44 @@ class _$_CurrentStateSavedEvent implements _CurrentStateSavedEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_SaveNoteItemEvent value) saveNoteItemEvent,
-    required TResult Function(_CurrentStateSavedEvent value)
-        currentStateSavedEvent,
+    required TResult Function(_NoteItemEmptiedEvent value) noteItemEmptiedEvent,
     required TResult Function(_NewBulletAddedEvent value) newBulletAddedEvent,
   }) {
-    return currentStateSavedEvent(this);
+    return noteItemEmptiedEvent(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_SaveNoteItemEvent value)? saveNoteItemEvent,
-    TResult Function(_CurrentStateSavedEvent value)? currentStateSavedEvent,
+    TResult Function(_NoteItemEmptiedEvent value)? noteItemEmptiedEvent,
     TResult Function(_NewBulletAddedEvent value)? newBulletAddedEvent,
   }) {
-    return currentStateSavedEvent?.call(this);
+    return noteItemEmptiedEvent?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_SaveNoteItemEvent value)? saveNoteItemEvent,
-    TResult Function(_CurrentStateSavedEvent value)? currentStateSavedEvent,
+    TResult Function(_NoteItemEmptiedEvent value)? noteItemEmptiedEvent,
     TResult Function(_NewBulletAddedEvent value)? newBulletAddedEvent,
     required TResult orElse(),
   }) {
-    if (currentStateSavedEvent != null) {
-      return currentStateSavedEvent(this);
+    if (noteItemEmptiedEvent != null) {
+      return noteItemEmptiedEvent(this);
     }
     return orElse();
   }
 }
 
-abstract class _CurrentStateSavedEvent implements NoteEditorEvent {
-  const factory _CurrentStateSavedEvent({required NoteItemPayload payload}) =
-      _$_CurrentStateSavedEvent;
+abstract class _NoteItemEmptiedEvent implements NoteEditorEvent {
+  const factory _NoteItemEmptiedEvent({required UniqueId id}) =
+      _$_NoteItemEmptiedEvent;
 
-  NoteItemPayload get payload;
+  UniqueId get id;
   @JsonKey(ignore: true)
-  _$CurrentStateSavedEventCopyWith<_CurrentStateSavedEvent> get copyWith =>
+  _$NoteItemEmptiedEventCopyWith<_NoteItemEmptiedEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -554,6 +377,7 @@ abstract class _$NewBulletAddedEventCopyWith<$Res> {
   factory _$NewBulletAddedEventCopyWith(_NewBulletAddedEvent value,
           $Res Function(_NewBulletAddedEvent) then) =
       __$NewBulletAddedEventCopyWithImpl<$Res>;
+  $Res call({String text, UniqueId id, int cursorStart, int cursorEnd});
 }
 
 /// @nodoc
@@ -566,60 +390,118 @@ class __$NewBulletAddedEventCopyWithImpl<$Res>
 
   @override
   _NewBulletAddedEvent get _value => super._value as _NewBulletAddedEvent;
+
+  @override
+  $Res call({
+    Object? text = freezed,
+    Object? id = freezed,
+    Object? cursorStart = freezed,
+    Object? cursorEnd = freezed,
+  }) {
+    return _then(_NewBulletAddedEvent(
+      text: text == freezed
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
+      cursorStart: cursorStart == freezed
+          ? _value.cursorStart
+          : cursorStart // ignore: cast_nullable_to_non_nullable
+              as int,
+      cursorEnd: cursorEnd == freezed
+          ? _value.cursorEnd
+          : cursorEnd // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_NewBulletAddedEvent implements _NewBulletAddedEvent {
-  const _$_NewBulletAddedEvent();
+  const _$_NewBulletAddedEvent(
+      {required this.text,
+      required this.id,
+      required this.cursorStart,
+      required this.cursorEnd});
+
+  @override
+  final String text;
+  @override
+  final UniqueId id;
+  @override
+  final int cursorStart;
+  @override
+  final int cursorEnd;
 
   @override
   String toString() {
-    return 'NoteEditorEvent.newBulletAddedEvent()';
+    return 'NoteEditorEvent.newBulletAddedEvent(text: $text, id: $id, cursorStart: $cursorStart, cursorEnd: $cursorEnd)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _NewBulletAddedEvent);
+        (other.runtimeType == runtimeType &&
+            other is _NewBulletAddedEvent &&
+            const DeepCollectionEquality().equals(other.text, text) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality()
+                .equals(other.cursorStart, cursorStart) &&
+            const DeepCollectionEquality().equals(other.cursorEnd, cursorEnd));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(text),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(cursorStart),
+      const DeepCollectionEquality().hash(cursorEnd));
+
+  @JsonKey(ignore: true)
+  @override
+  _$NewBulletAddedEventCopyWith<_NewBulletAddedEvent> get copyWith =>
+      __$NewBulletAddedEventCopyWithImpl<_NewBulletAddedEvent>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(UniqueId id, String payload) saveNoteItemEvent,
-    required TResult Function(NoteItemPayload payload) currentStateSavedEvent,
-    required TResult Function() newBulletAddedEvent,
+    required TResult Function(UniqueId id) noteItemEmptiedEvent,
+    required TResult Function(
+            String text, UniqueId id, int cursorStart, int cursorEnd)
+        newBulletAddedEvent,
   }) {
-    return newBulletAddedEvent();
+    return newBulletAddedEvent(text, id, cursorStart, cursorEnd);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(UniqueId id, String payload)? saveNoteItemEvent,
-    TResult Function(NoteItemPayload payload)? currentStateSavedEvent,
-    TResult Function()? newBulletAddedEvent,
+    TResult Function(UniqueId id)? noteItemEmptiedEvent,
+    TResult Function(String text, UniqueId id, int cursorStart, int cursorEnd)?
+        newBulletAddedEvent,
   }) {
-    return newBulletAddedEvent?.call();
+    return newBulletAddedEvent?.call(text, id, cursorStart, cursorEnd);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(UniqueId id, String payload)? saveNoteItemEvent,
-    TResult Function(NoteItemPayload payload)? currentStateSavedEvent,
-    TResult Function()? newBulletAddedEvent,
+    TResult Function(UniqueId id)? noteItemEmptiedEvent,
+    TResult Function(String text, UniqueId id, int cursorStart, int cursorEnd)?
+        newBulletAddedEvent,
     required TResult orElse(),
   }) {
     if (newBulletAddedEvent != null) {
-      return newBulletAddedEvent();
+      return newBulletAddedEvent(text, id, cursorStart, cursorEnd);
     }
     return orElse();
   }
@@ -628,9 +510,7 @@ class _$_NewBulletAddedEvent implements _NewBulletAddedEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_SaveNoteItemEvent value) saveNoteItemEvent,
-    required TResult Function(_CurrentStateSavedEvent value)
-        currentStateSavedEvent,
+    required TResult Function(_NoteItemEmptiedEvent value) noteItemEmptiedEvent,
     required TResult Function(_NewBulletAddedEvent value) newBulletAddedEvent,
   }) {
     return newBulletAddedEvent(this);
@@ -640,8 +520,7 @@ class _$_NewBulletAddedEvent implements _NewBulletAddedEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_SaveNoteItemEvent value)? saveNoteItemEvent,
-    TResult Function(_CurrentStateSavedEvent value)? currentStateSavedEvent,
+    TResult Function(_NoteItemEmptiedEvent value)? noteItemEmptiedEvent,
     TResult Function(_NewBulletAddedEvent value)? newBulletAddedEvent,
   }) {
     return newBulletAddedEvent?.call(this);
@@ -651,8 +530,7 @@ class _$_NewBulletAddedEvent implements _NewBulletAddedEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_SaveNoteItemEvent value)? saveNoteItemEvent,
-    TResult Function(_CurrentStateSavedEvent value)? currentStateSavedEvent,
+    TResult Function(_NoteItemEmptiedEvent value)? noteItemEmptiedEvent,
     TResult Function(_NewBulletAddedEvent value)? newBulletAddedEvent,
     required TResult orElse(),
   }) {
@@ -664,7 +542,19 @@ class _$_NewBulletAddedEvent implements _NewBulletAddedEvent {
 }
 
 abstract class _NewBulletAddedEvent implements NoteEditorEvent {
-  const factory _NewBulletAddedEvent() = _$_NewBulletAddedEvent;
+  const factory _NewBulletAddedEvent(
+      {required String text,
+      required UniqueId id,
+      required int cursorStart,
+      required int cursorEnd}) = _$_NewBulletAddedEvent;
+
+  String get text;
+  UniqueId get id;
+  int get cursorStart;
+  int get cursorEnd;
+  @JsonKey(ignore: true)
+  _$NewBulletAddedEventCopyWith<_NewBulletAddedEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -673,10 +563,12 @@ class _$NoteEditorStateTearOff {
 
   _NoteEditorState call(
       {required KtList<NoteItem> allNoteItems,
-      required Option<NoteItemPayload> focusedNoteItemPayload}) {
+      required Option<NoteItemPayload> focusedNoteItemPayload,
+      required Option<UniqueId> newItemToFocusId}) {
     return _NoteEditorState(
       allNoteItems: allNoteItems,
       focusedNoteItemPayload: focusedNoteItemPayload,
+      newItemToFocusId: newItemToFocusId,
     );
   }
 }
@@ -689,6 +581,7 @@ mixin _$NoteEditorState {
   KtList<NoteItem> get allNoteItems => throw _privateConstructorUsedError;
   Option<NoteItemPayload> get focusedNoteItemPayload =>
       throw _privateConstructorUsedError;
+  Option<UniqueId> get newItemToFocusId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NoteEditorStateCopyWith<NoteEditorState> get copyWith =>
@@ -702,7 +595,8 @@ abstract class $NoteEditorStateCopyWith<$Res> {
       _$NoteEditorStateCopyWithImpl<$Res>;
   $Res call(
       {KtList<NoteItem> allNoteItems,
-      Option<NoteItemPayload> focusedNoteItemPayload});
+      Option<NoteItemPayload> focusedNoteItemPayload,
+      Option<UniqueId> newItemToFocusId});
 }
 
 /// @nodoc
@@ -718,6 +612,7 @@ class _$NoteEditorStateCopyWithImpl<$Res>
   $Res call({
     Object? allNoteItems = freezed,
     Object? focusedNoteItemPayload = freezed,
+    Object? newItemToFocusId = freezed,
   }) {
     return _then(_value.copyWith(
       allNoteItems: allNoteItems == freezed
@@ -728,6 +623,10 @@ class _$NoteEditorStateCopyWithImpl<$Res>
           ? _value.focusedNoteItemPayload
           : focusedNoteItemPayload // ignore: cast_nullable_to_non_nullable
               as Option<NoteItemPayload>,
+      newItemToFocusId: newItemToFocusId == freezed
+          ? _value.newItemToFocusId
+          : newItemToFocusId // ignore: cast_nullable_to_non_nullable
+              as Option<UniqueId>,
     ));
   }
 }
@@ -741,7 +640,8 @@ abstract class _$NoteEditorStateCopyWith<$Res>
   @override
   $Res call(
       {KtList<NoteItem> allNoteItems,
-      Option<NoteItemPayload> focusedNoteItemPayload});
+      Option<NoteItemPayload> focusedNoteItemPayload,
+      Option<UniqueId> newItemToFocusId});
 }
 
 /// @nodoc
@@ -759,6 +659,7 @@ class __$NoteEditorStateCopyWithImpl<$Res>
   $Res call({
     Object? allNoteItems = freezed,
     Object? focusedNoteItemPayload = freezed,
+    Object? newItemToFocusId = freezed,
   }) {
     return _then(_NoteEditorState(
       allNoteItems: allNoteItems == freezed
@@ -769,6 +670,10 @@ class __$NoteEditorStateCopyWithImpl<$Res>
           ? _value.focusedNoteItemPayload
           : focusedNoteItemPayload // ignore: cast_nullable_to_non_nullable
               as Option<NoteItemPayload>,
+      newItemToFocusId: newItemToFocusId == freezed
+          ? _value.newItemToFocusId
+          : newItemToFocusId // ignore: cast_nullable_to_non_nullable
+              as Option<UniqueId>,
     ));
   }
 }
@@ -777,16 +682,20 @@ class __$NoteEditorStateCopyWithImpl<$Res>
 
 class _$_NoteEditorState implements _NoteEditorState {
   const _$_NoteEditorState(
-      {required this.allNoteItems, required this.focusedNoteItemPayload});
+      {required this.allNoteItems,
+      required this.focusedNoteItemPayload,
+      required this.newItemToFocusId});
 
   @override
   final KtList<NoteItem> allNoteItems;
   @override
   final Option<NoteItemPayload> focusedNoteItemPayload;
+  @override
+  final Option<UniqueId> newItemToFocusId;
 
   @override
   String toString() {
-    return 'NoteEditorState(allNoteItems: $allNoteItems, focusedNoteItemPayload: $focusedNoteItemPayload)';
+    return 'NoteEditorState(allNoteItems: $allNoteItems, focusedNoteItemPayload: $focusedNoteItemPayload, newItemToFocusId: $newItemToFocusId)';
   }
 
   @override
@@ -797,14 +706,17 @@ class _$_NoteEditorState implements _NoteEditorState {
             const DeepCollectionEquality()
                 .equals(other.allNoteItems, allNoteItems) &&
             const DeepCollectionEquality()
-                .equals(other.focusedNoteItemPayload, focusedNoteItemPayload));
+                .equals(other.focusedNoteItemPayload, focusedNoteItemPayload) &&
+            const DeepCollectionEquality()
+                .equals(other.newItemToFocusId, newItemToFocusId));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(allNoteItems),
-      const DeepCollectionEquality().hash(focusedNoteItemPayload));
+      const DeepCollectionEquality().hash(focusedNoteItemPayload),
+      const DeepCollectionEquality().hash(newItemToFocusId));
 
   @JsonKey(ignore: true)
   @override
@@ -814,14 +726,16 @@ class _$_NoteEditorState implements _NoteEditorState {
 
 abstract class _NoteEditorState implements NoteEditorState {
   const factory _NoteEditorState(
-          {required KtList<NoteItem> allNoteItems,
-          required Option<NoteItemPayload> focusedNoteItemPayload}) =
-      _$_NoteEditorState;
+      {required KtList<NoteItem> allNoteItems,
+      required Option<NoteItemPayload> focusedNoteItemPayload,
+      required Option<UniqueId> newItemToFocusId}) = _$_NoteEditorState;
 
   @override
   KtList<NoteItem> get allNoteItems;
   @override
   Option<NoteItemPayload> get focusedNoteItemPayload;
+  @override
+  Option<UniqueId> get newItemToFocusId;
   @override
   @JsonKey(ignore: true)
   _$NoteEditorStateCopyWith<_NoteEditorState> get copyWith =>

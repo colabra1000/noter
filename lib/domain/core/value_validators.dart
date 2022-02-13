@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:kt_dart/collection.dart';
 import 'package:noter/domain/core/value_failures.dart';
 
 Either<ValueFailure<String>, String> validateMaxStringLength(

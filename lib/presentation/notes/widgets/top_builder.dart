@@ -3,15 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:noter/presentation/core/globalWidgets/text_styles.dart';
 
 class TopBuilder extends StatelessWidget {
-  final bool editing;
-  const TopBuilder({Key? key, required this.editing}) : super(key: key);
+  const TopBuilder({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return PhysicalModel(
       color: backgroundColor,
       shadowColor: Theme.of(context).primaryColor.withOpacity(.5),
-      elevation: editing ? 40 : 5,
+      elevation: 40,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(

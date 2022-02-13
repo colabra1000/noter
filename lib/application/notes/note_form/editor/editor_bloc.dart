@@ -13,23 +13,20 @@ class EditorBloc extends Bloc<EditorEvent, EditorState> {
           emit(state.copyWith(editorType: const EditorType.none()));
         },
         toggledNoteBodyEditor: (event) {
-          // if (state.editorType == const EditorType.noteTags()) {
-          //   emit(state.copyWith(editorType: const EditorType.none()));
-          // } else {
+          // print(event);
+
           emit(state.copyWith(editorType: const EditorType.noteBody()));
-          // }
         },
         toggledNoteTitleEditor: (event) {
+          // print(event);
+
           emit(state.copyWith(editorType: const EditorType.noteTitle()));
         },
         toggledNoteCategoryEditor: (event) {
-          // if (state.editorType == const EditorType.noteTags()) {
-          //   emit(state.copyWith(editorType: const EditorType.none()));
-          // } else {
           emit(state.copyWith(editorType: const EditorType.noteCategory()));
-          // }
         },
-        closeAnyEditor: (_CloseAnyEditor value) {
+        closeActiveEditor: (event) {
+          // print(event);
           emit(state.copyWith(editorType: const EditorType.none()));
         },
       );

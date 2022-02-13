@@ -17,6 +17,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
+  flutter_lorem: ^2.0.0
   flutter_screenutil: ^5.0.1
   freezed_annotation: ^1.1.0
   get_it: ^7.2.0
