@@ -1,6 +1,5 @@
+import 'package:noter/presentation/core/globalWidgets/app_constants.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:noter/presentation/core/globalWidgets/text_styles.dart';
 
 class NoteCategory extends StatelessWidget {
   const NoteCategory({Key? key}) : super(key: key);
@@ -10,8 +9,8 @@ class NoteCategory extends StatelessWidget {
     return SingleChildScrollView(
       child: Center(
         child: Wrap(
-          spacing: .05.sw,
-          runSpacing: .05.sw,
+          spacing: .05,
+          runSpacing: .05,
           children: [
             _categoryLabelBox(),
             _categoryLabelBox(),
@@ -26,9 +25,9 @@ class NoteCategory extends StatelessWidget {
 
   Widget _categoryLabelBox() {
     return Container(
-      width: .4.sw,
-      decoration: BoxDecoration(
-          color: textColorLight, borderRadius: BorderRadius.circular(10.r)),
+      width: .4,
+      decoration:
+          BoxDecoration(color: light2, borderRadius: BorderRadius.circular(10)),
       child: AspectRatio(
         aspectRatio: 1,
         child: Center(
@@ -55,8 +54,8 @@ class NoteCategory extends StatelessWidget {
 //   Widget build(BuildContext context) {
 //     return ReorderableWrap(
 //       onReorder: _onReorder,
-//       spacing: .05.sw,
-//       runSpacing: .05.sw,
+//       spacing: .05,
+//       runSpacing: .05,
 //       children: widget.tiles,
 //     );
 //   }

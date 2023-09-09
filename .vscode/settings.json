@@ -8,5 +8,6 @@
         "**/Thumbs.db": true,
         "**/value_failures.freezed.dart": false
     },
-    "explorerExclude.backup": null
+    "explorerExclude.backup": null,
+    "dart.flutterSdkPath": "/Users/brandon/Desktop/flutter-sdk/3.0.1"
 }

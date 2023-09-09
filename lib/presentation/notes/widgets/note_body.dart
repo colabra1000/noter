@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:noter/application/notes/editor/editor_bloc.dart';
 import 'package:noter/application/notes/note_editor/bloc/note_editor_bloc.dart';
 import 'package:noter/domain/core/value_objects.dart';
 import 'package:noter/domain/notes/note.dart';
 import 'package:noter/domain/notes/value_objects.dart';
-import 'package:noter/presentation/core/globalWidgets/text_styles.dart';
+import 'package:noter/presentation/core/globalWidgets/app_constants.dart';
 import 'package:noter/presentation/notes/widgets/x_icon_button.dart';
 import 'package:noter/presentation/notes/widgets/x_text_editor.dart';
 
@@ -110,18 +109,22 @@ class NoteBody extends StatelessWidget {
         ),
         // NoteTextEditor(
         //     textEditingController: noteTextController, isEditing: isEditing),
-        SizedBox(height: 30.h),
+        const SizedBox(height: 30),
         Row(
-          children: [_pictureHolder(), SizedBox(width: 20.w), _pictureHolder()],
+          children: [
+            _pictureHolder(),
+            const SizedBox(width: 20),
+            _pictureHolder()
+          ],
         )
       ],
     );
   }
 
   Widget _pictureHolder() {
-    return SizedBox(
-      height: .3.sw,
-      child: const AspectRatio(
+    return const SizedBox(
+      height: .3,
+      child: AspectRatio(
         aspectRatio: 1,
         child: Placeholder(),
       ),
@@ -136,7 +139,7 @@ class NoteBody extends StatelessWidget {
 
     if (noteItem is NoteString) {
       return noteItem.value.fold(
-        (l) => Text("error", style: mediumText.copyWith(color: dangerColor)),
+        (l) => Text("error", style: mediumTextStyle.copyWith(color: red1)),
         (r) {
           FocusNode focusNode = FocusNode();
           focusNode.addListener(() {
@@ -228,12 +231,12 @@ class NoteTextEditor extends StatelessWidget {
       minLines: 1,
       maxLines: 20,
       controller: textEditingController,
-      style: smallText,
+      style: smallTextStyle,
       showCursor: isEditing,
       enabled: isEditing,
       decoration: InputDecoration(
         hintText: "Body...",
-        hintStyle: mediumText.copyWith(
+        hintStyle: mediumTextStyle.copyWith(
             fontWeight: FontWeight.bold, color: Colors.grey.shade500),
         isDense: true,
         contentPadding: const EdgeInsets.symmetric(vertical: 8.0),

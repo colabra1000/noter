@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:noter/presentation/core/globalWidgets/app_constants.dart';
 
 class PageScaffold extends StatelessWidget {
   final Widget child;
@@ -8,10 +9,12 @@ class PageScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: dark1,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: SafeArea(
-          child: Center(
+          child: Container(
+            color: backgroundColor,
             child: child,
           ),
         ),

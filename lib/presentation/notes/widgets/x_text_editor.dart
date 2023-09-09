@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:noter/presentation/core/globalWidgets/text_styles.dart';
+import 'package:noter/presentation/core/globalWidgets/app_constants.dart';
 
 class XTextEditor extends StatefulWidget {
   final TextEditingController textEditingController;
@@ -19,7 +19,7 @@ class _XTextEditorState extends State<XTextEditor> {
       minLines: 1,
       maxLines: 4,
       controller: widget.textEditingController,
-      style: mediumText.copyWith(fontWeight: FontWeight.bold),
+      style: mediumTextStyle.copyWith(fontWeight: FontWeight.bold),
       showCursor: false,
       enabled: false,
       decoration: const InputDecoration(

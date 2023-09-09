@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:noter/presentation/core/globalWidgets/text_styles.dart';
+import 'package:noter/presentation/core/globalWidgets/app_constants.dart';
 import 'package:noter/presentation/core/widgets/page_scaffold.dart';
 import 'package:noter/presentation/notes/others/all_notes.dart';
 import 'package:noter/presentation/notes/others/note_category.dart';
 
-import 'package:noter/presentation/notes/widgets/top_builder.dart';
+import 'package:noter/presentation/notes/widgets/app_bar_builder.dart';
 
 class CategoriseNotesPage extends StatefulWidget {
   const CategoriseNotesPage({Key? key}) : super(key: key);
@@ -32,12 +31,12 @@ class _CategoriseNotesPageState extends State<CategoriseNotesPage>
         child: Column(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: TabBarWidget(
             tabController: tabController,
           ), // child: GNav(tabs: tabs),
         ),
-        SizedBox(height: 20.h),
+        const SizedBox(height: 20),
         Expanded(
             child: TabBarView(controller: tabController, children: const [
           AllNotes(),
@@ -60,9 +59,9 @@ class TabBarWidget extends StatelessWidget {
     return TabBar(
       controller: tabController,
       tabs: tabs,
-      labelColor: textColorDark,
-      labelPadding: EdgeInsets.all(10.sp),
-      indicatorColor: textColorDark,
+      labelColor: dark1,
+      labelPadding: const EdgeInsets.all(10),
+      indicatorColor: dark1,
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:noter/main.dart';
+import 'package:noter/presentation/core/globalWidgets/app_constants.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({Key? key}) : super(key: key);
@@ -8,8 +9,7 @@ class AppWidget extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      builder: () => MaterialApp.router(
+    return MaterialApp.router(
         routeInformationParser: appRouter.defaultRouteParser(),
         routerDelegate: appRouter.delegate(),
         debugShowCheckedModeBanner: false,
@@ -18,7 +18,13 @@ class AppWidget extends StatelessWidget {
           // primaryColor: Colors.red.shade400,
           // backgroundColor: Colors.grey.shade100,
         ),
-      ),
-    );
+        builder: (context, widget) => ResponsiveWrapper.builder(
+            ClampingScrollWrapper.builder(context, widget!),
+            defaultScale: true,
+            breakpoints: [
+              const ResponsiveBreakpoint.autoScale(400,
+                  name: MOBILE, scaleFactor: .8),
+            ],
+            backgroundColor: dark1));
   }
 }

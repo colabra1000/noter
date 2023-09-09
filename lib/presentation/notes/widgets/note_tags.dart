@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:noter/application/notes/editor/editor_bloc.dart';
 import 'package:noter/application/notes/tag_editor/tag_editor_bloc.dart';
 import 'package:noter/domain/notes/tag_item.dart';
-import 'package:noter/presentation/core/globalWidgets/text_styles.dart';
+import 'package:noter/presentation/core/globalWidgets/app_constants.dart';
 import 'package:noter/presentation/notes/widgets/animated_x_container.dart';
 
 class NoteTags extends StatelessWidget {
-  NoteTags({Key? key}) : super(key: key);
+  const NoteTags({Key? key}) : super(key: key);
 
-  final noteTagsPanelHeight = 50.h;
-  final expandedTagsPanelHeight = 260.h;
+  final noteTagsPanelHeight = 50.0;
+  final expandedTagsPanelHeight = 260.0;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +43,7 @@ class NoteTags extends StatelessWidget {
                         }
                       }),
                   SizedBox(
-                    width: 10.w,
+                    width: 10,
                   ),
                   BlocBuilder<TagEditorBloc, TagEditorState>(
                     buildWhen: (previous, current) =>
@@ -75,7 +74,7 @@ class NoteTags extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             const NoteTagEditingPane(),
-                            SizedBox(height: 20.h),
+                            SizedBox(height: 20),
                             Expanded(
                               child: BlocBuilder<TagEditorBloc, TagEditorState>(
                                 buildWhen: (previous, current) {
@@ -119,7 +118,7 @@ class NoteTags extends StatelessWidget {
                     ));
               },
             ),
-            SizedBox(height: 10.h),
+            SizedBox(height: 10),
             const Divider(
               color: Colors.grey,
             ),
@@ -132,7 +131,7 @@ class NoteTags extends StatelessWidget {
   Widget _innerShadowContainer({required Widget child}) {
     return Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.r),
+          borderRadius: BorderRadius.circular(10),
           boxShadow: [
             const BoxShadow(
               color: Colors.grey,
@@ -150,10 +149,10 @@ class NoteTags extends StatelessWidget {
   Widget _displayNoteTags(
       {required List<TagItem> tags, required BuildContext context}) {
     return Container(
-      height: 50.h,
+      height: 50,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          border: Border.all(color: textColorLight)),
+          border: Border.all(color: light2)),
       child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
@@ -190,14 +189,14 @@ class TagItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 5.sp, vertical: 5.sp),
-      padding: EdgeInsets.symmetric(horizontal: 5.sp, vertical: 4.sp),
+      margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 4),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(6.r),
+        borderRadius: BorderRadius.circular(6),
         color: tagItem.color,
       ),
       child: Text(tagItem.name.getOrCrash,
-          style: smallText.copyWith(color: backgroundColor)),
+          style: smallTextStyle.copyWith(color: backgroundColor)),
     );
   }
 }
@@ -219,7 +218,7 @@ class NoteTagEditingPane extends StatelessWidget {
           },
           decoration: InputDecoration(
             prefixIcon: const Icon(Icons.search, size: 25),
-            prefixIconConstraints: BoxConstraints.tight(Size(30.w, 20.h)),
+            prefixIconConstraints: BoxConstraints.tight(Size(30, 20)),
             isDense: true,
             contentPadding:
                 const EdgeInsets.symmetric(horizontal: 15, vertical: 10),

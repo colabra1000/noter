@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:noter/application/notes/editor/editor_bloc.dart';
 
 import 'package:noter/presentation/core/widgets/page_scaffold.dart';
 import 'package:noter/presentation/notes/widgets/animated_x_container.dart';
 import 'package:noter/presentation/notes/widgets/note_title.dart';
-import 'package:noter/presentation/notes/widgets/top_builder.dart';
+import 'package:noter/presentation/notes/widgets/app_bar_builder.dart';
 import 'package:noter/presentation/notes/widgets/note_body.dart';
 import 'package:noter/presentation/notes/widgets/note_tags.dart';
 
@@ -18,10 +17,10 @@ class CreateNotePage extends StatefulWidget {
 }
 
 class _CreateNotePageState extends State<CreateNotePage> {
-  final double noteTitleHeight = 120.h;
-  final double noteTagsHeight = 80.h;
-  final double expandedTagsPanelHeight = 260.h;
-  final double expandedTitlePanelHeight = 260.h;
+  final double noteTitleHeight = 120;
+  final double noteTagsHeight = 80;
+  final double expandedTagsPanelHeight = 260;
+  final double expandedTitlePanelHeight = 260;
   final ScrollController scrollController = ScrollController();
 
   @override
@@ -45,11 +44,10 @@ class _CreateNotePageState extends State<CreateNotePage> {
             builder: (context, state) => Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      height: 70.h,
-                      child: TopBuilder(
-                        editing: state.editorType != const EditorType.none(),
-                      ),
+                    AppBarBuilder(
+                      onBackPressed: () {},
+                      onSearch: () {},
+                      editing: state.editorType != const EditorType.none(),
                     ),
                     Expanded(
                       child: SingleChildScrollView(

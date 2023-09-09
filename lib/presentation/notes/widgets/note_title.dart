@@ -1,98 +1,81 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:noter/application/notes/editor/editor_bloc.dart';
-import 'package:noter/presentation/core/globalWidgets/text_styles.dart';
+import 'package:noter/presentation/core/globalWidgets/app_constants.dart';
 import 'package:noter/presentation/notes/widgets/animated_x_container.dart';
 import 'package:noter/presentation/notes/widgets/x_icon_button.dart';
 
-class NoteTitle extends StatefulWidget {
+class NoteTitle extends HookWidget {
   const NoteTitle({Key? key}) : super(key: key);
 
-  @override
-  State<NoteTitle> createState() => _NoteTitleState();
-}
+  // final TextEditingController textEditingController =
+  //     TextEditingController(text: "In the brink of time I wonder");
 
-class _NoteTitleState extends State<NoteTitle> {
-  final TextEditingController textEditingController =
-      TextEditingController(text: "In the brink of time I wonder");
-
-  final double titlePanelHeight = 120.h;
-  final double expandedTitlePanelHeight = 260.h;
+  // final double titlePanelHeight = 120;
+  // final double expandedTitlePanelHeight = 260;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<EditorBloc, EditorState>(
-      builder: (context, state) {
-        bool isEditing = state.editorType == const EditorType.noteTitle();
+    final textEditingcontroller =
+        useTextEditingController(text: "In the brink of time I wonder");
+    return _noteTitleBuilder(textEditingcontroller);
 
-        return AnimatedXContainer(
-          height: state.editorType == const EditorType.none()
-              ? titlePanelHeight
-              : !isEditing
-                  ? 0
-                  : titlePanelHeight + expandedTitlePanelHeight,
-          child: SingleChildScrollView(
-              child: GestureDetector(
-                  onLongPress: () {
-                    BlocProvider.of<EditorBloc>(context)
-                        .add(const EditorEvent.toggledNoteTitleEditor());
-                  },
-                  child: Stack(
-                    children: [
-                      _noteTitleBuilder(),
-                      _noteTitleOptionsBuilder(isEditing),
-                    ],
-                  ))),
-        );
-      },
-    );
+    // BlocBuilder<EditorBloc, EditorState>(
+    //   builder: (context, state) {
+    //     bool isEditing = state.editorType == const EditorType.noteTitle();
+
+    //     return AnimatedXContainer(
+    //       height: state.editorType == const EditorType.none()
+    //           ? titlePanelHeight
+    //           : !isEditing
+    //               ? 0
+    //               : titlePanelHeight + expandedTitlePanelHeight,
+    //       child: SingleChildScrollView(
+    //           child: GestureDetector(
+    //               onLongPress: () {
+    //                 BlocProvider.of<EditorBloc>(context)
+    //                     .add(const EditorEvent.toggledNoteTitleEditor());
+    //               },
+    //               child: Stack(
+    //                 children: [
+    //                   _noteTitleBuilder(),
+    //                   _noteTitleOptionsBuilder(isEditing),
+    //                 ],
+    //               ))),
+    //     );
+    //   },
+    // );
   }
 
-  _noteTitleOptionsBuilder(isEditing) {
-    return Visibility(
-      visible: isEditing,
-      child: Align(
-        alignment: Alignment.topRight,
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            XIconButton(
-                onPressed: () {
-                  BlocProvider.of<EditorBloc>(context)
-                      .add(const EditorEvent.closeAnyEditor());
-                },
-                icon: const Icon(Icons.cancel)),
-          ],
-        ),
+  // _noteTitleOptionsBuilder(isEditing) {
+  //   return Visibility(
+  //     visible: isEditing,
+  //     child: Align(
+  //       alignment: Alignment.topRight,
+  //       child: Row(
+  //         mainAxisSize: MainAxisSize.min,
+  //         children: [
+  //           XIconButton(
+  //               onPressed: () {
+  //                 BlocProvider.of<EditorBloc>(context)
+  //                     .add(const EditorEvent.closeAnyEditor());
+  //               },
+  //               icon: const Icon(Icons.cancel)),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  _noteTitleBuilder(TextEditingController controller) {
+    return Container(
+      decoration: BoxDecoration(border: Border.all(color: dark2)),
+      child: Column(
+        children: [
+          TitleTextEditor(textEditingController: controller, isEditing: false)
+        ],
       ),
-    );
-  }
-
-  _noteTitleBuilder() {
-    final isEditing = BlocProvider.of<EditorBloc>(context).state.editorType ==
-        const EditorType.noteTitle();
-
-    return Column(
-      children: [
-        AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          height: isEditing ? 50 : 20,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: TitleTextEditor(
-              textEditingController: textEditingController,
-              isEditing: isEditing),
-        ),
-        Row(
-          children: [
-            Text("Created", style: smallText),
-            const Spacer(),
-            Text("19 April 2021, 20:39 PM", style: smallText),
-          ],
-        ),
-      ],
     );
   }
 }
@@ -110,12 +93,12 @@ class TitleTextEditor extends StatelessWidget {
       minLines: 1,
       maxLines: 4,
       controller: textEditingController,
-      style: mediumText.copyWith(fontWeight: FontWeight.bold),
+      style: mediumTextStyle.copyWith(fontWeight: FontWeight.bold),
       showCursor: isEditing,
       enabled: isEditing,
       decoration: InputDecoration(
         hintText: "Title...",
-        hintStyle: mediumText.copyWith(
+        hintStyle: mediumTextStyle.copyWith(
             fontWeight: FontWeight.bold, color: Colors.grey.shade500),
         isDense: true,
         contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
